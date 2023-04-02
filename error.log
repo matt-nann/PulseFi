@@ -1,0 +1,1227 @@
+
+2023-04-02 16:08:12,858 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:108]
+2023-04-02 16:11:54,252 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:106]
+2023-04-02 16:51:18,069 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:51:24,006 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 143, in register
+    if form.validate_on_submit():
+AttributeError: 'RegisterForm' object has no attribute 'validate_on_submit'
+2023-04-02 16:51:27,720 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 118, in login
+    if form.validate_on_submit():
+AttributeError: 'LoginForm' object has no attribute 'validate_on_submit'
+2023-04-02 16:53:41,712 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:53:45,299 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 118, in login
+    if form.validate_on_submit():
+AttributeError: 'LoginForm' object has no attribute 'validate_on_submit'
+2023-04-02 16:53:49,066 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 118, in login
+    if form.validate_on_submit():
+AttributeError: 'LoginForm' object has no attribute 'validate_on_submit'
+2023-04-02 16:53:50,951 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 118, in login
+    if form.validate_on_submit():
+AttributeError: 'LoginForm' object has no attribute 'validate_on_submit'
+2023-04-02 16:54:20,796 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:54:32,242 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:54:34,577 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in login
+    form = LoginForm()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/form.py", line 73, in __init__
+    super().__init__(formdata=formdata, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 286, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 127, in process
+    field.process(formdata, data, extra_filters=field_extra_filters)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/csrf/core.py", line 44, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 147, in generate_csrf_token
+    return generate_csrf(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 36, in generate_csrf
+    secret_key = _get_config(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 136, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2023-04-02 16:54:56,796 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in login
+    form = LoginForm()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 208, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/form.py", line 73, in __init__
+    super().__init__(formdata=formdata, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 286, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/form.py", line 127, in process
+    field.process(formdata, data, extra_filters=field_extra_filters)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/wtforms/csrf/core.py", line 44, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 147, in generate_csrf_token
+    return generate_csrf(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 36, in generate_csrf
+    secret_key = _get_config(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_wtf/csrf.py", line 136, in _get_config
+    raise RuntimeError(message)
+RuntimeError: A secret key is required to use CSRF.
+2023-04-02 16:55:35,382 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:55:51,563 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 151, in register
+    return render_template('register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 62, in get_source
+    return self._get_source_fast(environment, template)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: register.html
+2023-04-02 16:56:08,811 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 16:58:20,633 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 17:00:52,796 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 17:00:55,805 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 143, in register
+    print(form.username.data)
+AttributeError: 'RegisterForm' object has no attribute 'username'
+2023-04-02 17:01:15,172 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:179]
+2023-04-02 17:02:05,714 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:03:28,529 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:05:16,127 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:05:20,190 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 154, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 18, in template
+    {% block content %}
+jinja2.exceptions.TemplateAssertionError: block 'content' defined twice
+2023-04-02 17:05:44,536 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:05:46,629 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 154, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 16, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:05:48,471 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 154, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 16, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:06:16,586 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:06:18,132 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 154, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 8, in block 'content'
+    {{ form.username.label }}
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'src.flask.forms.RegisterForm object' has no attribute 'username'
+2023-04-02 17:06:48,847 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:06:54,347 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 154, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 20, in block 'content'
+    {{ form.confirm_password.label }}
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'src.flask.forms.RegisterForm object' has no attribute 'confirm_password'
+2023-04-02 17:07:25,953 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:07:51,313 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 145, in register
+    user = User(username=form.username.data, email=form.email.data)
+TypeError: __init__() got an unexpected keyword argument 'username'
+2023-04-02 17:09:19,530 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:181]
+2023-04-02 17:09:21,270 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 145, in register
+    user = User(username=form.username.data, email=form.email.data)
+TypeError: __init__() got an unexpected keyword argument 'email'
+2023-04-02 17:09:24,951 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 145, in register
+    user = User(username=form.username.data, email=form.email.data)
+TypeError: __init__() got an unexpected keyword argument 'email'
+2023-04-02 17:09:46,143 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:182]
+2023-04-02 17:09:48,501 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 147, in register
+    user.set_password(form.password.data)
+AttributeError: 'User' object has no attribute 'set_password'
+2023-04-02 17:10:25,680 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:183]
+2023-04-02 17:10:43,800 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 150, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: (' mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:11:30,504 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:183]
+2023-04-02 17:11:34,057 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 150, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: (' mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:12:56,530 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:186]
+2023-04-02 17:12:59,971 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 153, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: (' mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:13:45,302 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:186]
+2023-04-02 17:13:47,591 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 153, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: (' mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:14:02,568 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 153, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:16:08,236 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:186]
+2023-04-02 17:16:11,023 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 153, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:16:23,460 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: Users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 153, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: Users
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-04-02 17:17:58,870 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:186]
+2023-04-02 17:18:02,311 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 155, in register
+    login_user(user)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask_login/utils.py", line 180, in login_user
+    if not force and not user.is_active:
+AttributeError: 'User' object has no attribute 'is_active'
+2023-04-02 17:19:17,094 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:190]
+2023-04-02 17:19:25,934 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Users.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 157, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Users.email
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-04-02 17:19:38,190 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Users.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 157, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Users.email
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-04-02 17:22:35,321 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:190]
+2023-04-02 17:22:39,118 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 160, in register
+    return redirect(url_for('dashboard'))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/helpers.py", line 256, in url_for
+    return current_app.url_for(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'dashboard'. Did you mean 'about' instead?
+2023-04-02 17:22:54,928 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Users.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 157, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Users.email
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-04-02 17:23:09,661 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Users.username
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 157, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Users.username
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnann', 'jgghhhgghh4@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-04-02 17:23:23,967 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 160, in register
+    return redirect(url_for('dashboard'))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/helpers.py", line 256, in url_for
+    return current_app.url_for(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'dashboard'. Did you mean 'about' instead?
