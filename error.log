@@ -1225,3 +1225,1096 @@ Traceback (most recent call last):
   File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'dashboard'. Did you mean 'about' instead?
+2023-04-02 17:30:16,091 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:190]
+2023-04-02 17:30:29,497 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: UNIQUE constraint failed: Users.email
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 157, in register
+    db.session.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 553, in commit
+    return self._proxied.commit()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1903, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1218, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1193, in _prepare_impl
+    self.session.flush()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4155, in flush
+    self._flush(objects)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4292, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 147, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 4252, in _flush
+    flush_context.execute()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 467, in execute
+    rec.execute(self)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/unitofwork.py", line 644, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/orm/persistence.py", line 1184, in _emit_insert_statements
+    result = connection.execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1414, in execute
+    return meth(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 486, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2326, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 748, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: Users.email
+[SQL: INSERT INTO "Users" (username, email, password) VALUES (?, ?, ?)]
+[parameters: ('mnfdas', 'matpar481@gmail.com', '123')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-04-02 17:41:53,971 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:47:10,179 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 89, in login
+    return render_template('forms/login.html', title='Login', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/login.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/login.html", line 6, in block 'content'
+    {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'src.flask.forms.LoginForm object' has no attribute 'name'
+2023-04-02 17:48:19,033 ERROR: Exception on /login [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 89, in login
+    return render_template('forms/login.html', title='Login', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/login.html", line 1, in top-level template code
+    {% extends 'layouts/form.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/form.html", line 52, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/login.html", line 6, in block 'content'
+    {{ form.username(class_ = 'form-control first-input', placeholder = form.username.label.text, required = true, autofocus = true) }}
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 485, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'src.flask.forms.LoginForm object' has no attribute 'name'
+2023-04-02 17:48:23,547 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:49:42,950 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:49:47,005 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 30, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:50:29,536 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 30, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:51:50,477 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:52:18,224 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:52:32,699 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:53:19,923 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:54:39,291 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:54:54,197 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:55:00,458 ERROR: Exception on /register [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 30, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:55:04,619 ERROR: Exception on /register [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 117, in register
+    return render_template('forms/register.html', title='Register', form=form)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/forms/register.html", line 30, in template
+    {% block title %}Register{% endblock %}
+jinja2.exceptions.TemplateAssertionError: block 'title' defined twice
+2023-04-02 17:55:26,682 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:58:10,560 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:58:42,235 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 17:59:30,825 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 18:00:41,937 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:144]
+2023-04-02 18:01:06,133 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:145]
+2023-04-02 18:01:23,533 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:146]
+2023-04-02 18:05:49,638 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:147]
+2023-04-02 18:07:14,332 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:146]
+2023-04-02 18:07:21,882 ERROR: Exception on /login [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 87, in login
+    login_user(user, remember=form.remember.data)
+AttributeError: 'LoginForm' object has no attribute 'remember'
+2023-04-02 18:07:55,264 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:146]
+2023-04-02 18:11:16,354 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:14:05,536 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:14:07,099 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <li><a href="{{ url_for('logout') }}">Signup</a></li>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:14:09,553 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <li><a href="{{ url_for('logout') }}">Signup</a></li>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:15:38,023 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:15:45,082 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:15:58,126 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:15:59,754 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:16:00,646 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:16:00,890 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:16:10,070 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:24:22,265 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:24:25,794 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:24:51,145 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:24:52,408 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:25:05,463 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:25:07,111 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <li><a href="{{ url_for('blahhhh') }}">Logout</a></li>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'blahhhh'. Did you mean 'home' instead?
+2023-04-02 18:28:31,918 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:28:36,578 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:28:37,352 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:28:39,453 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 74, in top-level template code
+    <!-- <li><a href="{{ url_for('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li> -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'logout'. Did you mean 'forgot' instead?
+2023-04-02 18:29:31,044 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:29:33,309 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    {{ csrf_token() }}
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:30:21,367 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:30:24,052 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <!-- {{ csrf_token() }} -->
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:30:39,737 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:31:09,434 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:31:27,191 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:31:29,998 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1788, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1770, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1669, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1609, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 133, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/errors/404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 100, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/errors/404.html", line 5, in block 'content'
+    <p><a href="{{url_for('index')}}">Back</a></p>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
+2023-04-02 18:32:28,964 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:32:31,718 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:32:33,758 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:33:23,622 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:33:25,548 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:33:26,670 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:33:29,730 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:33:34,154 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:34:54,013 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:34:55,653 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:34:56,912 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:34:58,707 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:36:43,477 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:36:46,726 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:38:58,947 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:143]
+2023-04-02 18:39:02,059 ERROR: Exception on /logout [POST] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+TypeError: wrapper() missing 1 required positional argument: 'fn'
+2023-04-02 18:41:58,609 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:42:08,684 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:43:31,441 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:43:32,219 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:43:43,214 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:43:44,737 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:44:10,441 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:44:17,478 ERROR: Exception on / [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 70, in home
+    return render_template('pages/placeholder.home.html')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/pages/placeholder.home.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/templates/layouts/main.html", line 75, in top-level template code
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/utils.py", line 83, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: 'csrf_token' is undefined
+2023-04-02 18:44:36,021 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:45:22,674 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:46:51,776 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:47:38,936 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:51:27,885 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:52:06,395 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-02 18:52:15,845 ERROR: Exception on /about [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 57, in decorated_view
+    if (current_user.role != role) and (role != 'ANY'):
+AttributeError: 'User' object has no attribute 'role'
+2023-04-02 18:52:19,039 ERROR: Exception on /about [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flask/app.py", line 57, in decorated_view
+    if (current_user.role != role) and (role != 'ANY'):
+AttributeError: 'User' object has no attribute 'role'
+2023-04-02 18:53:04,381 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
