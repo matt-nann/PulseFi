@@ -2318,3 +2318,5 @@ Traceback (most recent call last):
     if (current_user.role != role) and (role != 'ANY'):
 AttributeError: 'User' object has no attribute 'role'
 2023-04-02 18:53:04,381 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-03 11:17:29,968 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:142]
+2023-04-03 11:39:52,781 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flask/app.py:188]
