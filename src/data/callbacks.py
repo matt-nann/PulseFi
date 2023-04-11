@@ -4,7 +4,7 @@ import pandas as pd
 import datetime
 from datetime import datetime, timedelta
 from fitbit.api import Fitbit
-from flask import has_request_context
+from flask import has_request_context, redirect, url_for
 import requests
 import traceback
 from flask import request
@@ -60,50 +60,15 @@ class FitbitAuth:
             timeout=100,
         )
         self.redirect_uri = redirect_uri
-    
-    def retrieve_OAuth_FitBit_Tokens(self):
-        # if has_request_context():
-        #     self.server.browser_authorize()
-        #     ACCESS_TOKEN=str(self.server.fitbit.client.session.token['access_token'])
-        #     REFRESH_TOKEN=str(self.server.fitbit.client.session.token['refresh_token'])
-        #     return ACCESS_TOKEN, REFRESH_TOKEN
-        ...
+
     def authorize(self):
-        """
-        opens up a new tab fitbit authorization page and waits for user to authorize, then returns the access token and refresh token
-        if the user does not authorize within 20 seconds
-        """
-        if self.unauthorized:
-            # self.retrieve_OAuth_FitBit_Tokens()
-            if has_request_context():
-                url, _ = self.fitbit.client.authorize_token_url()
-                threading.Timer(1, webbrowser.open_new_tab, args=(url,)).start()
-
-                start_time = time.time()
-                try:
-                    while True:
-                        try:
-                            access_token = self.fitbit.client.session.token['access_token']
-                            refresh_token = self.fitbit.client.session.token['refresh_token']
-                            break
-                        except KeyError:
-                            time.sleep(1)
-                            if time.time() - start_time > self.ALLOTED_AUTH_TIME:
-                                raise Exception('Timeout waiting for authorization')
-                except Exception as e:
-                    self.failedAuth = True
-                    return
-                
-                self.ACCESS_TOKEN=str(access_token)
-                self.REFRESH_TOKEN=str(refresh_token)
-                self.unauthorized = False
-                self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
-
-    def requestMultipleDays(self):
-        self.authorize()
         if self.failedAuth:
-            return None
-
+            return 'Failed to authorize Fitbit'
+        if self.unauthorized:
+            url, _ = self.fitbit.client.authorize_token_url()  # Add the state parameter to the URL
+            return redirect(url)
+    
+    def requestMultipleDays(self):
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
         endTime = datetime.now().date().strftime("%Y-%m-%d")
@@ -140,6 +105,7 @@ class FitbitAuth:
         def fitbit_auth():
             code = request.args.get('code')
             error = request.args.get('error')
+            print("fitbit_auth", code, error)
             """
             Receive a Fitbit response containing a verification code. Use the code
             to fetch the access_token.
@@ -156,11 +122,21 @@ class FitbitAuth:
                     error = self._fmt_failure('CSRF Warning! Mismatching state')
             else:
                 error = self._fmt_failure('Unknown error while authenticating')
-            return error if error else self.success_html
-
+            if error:
+                return error
+            else:
+                self.ACCESS_TOKEN=str(self.fitbit.client.session.token['access_token'])
+                self.REFRESH_TOKEN=str(self.fitbit.client.session.token['refresh_token'])
+                self.unauthorized = False
+                self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+                return redirect(url_for('heartRate'))
 
         @app.route('/heartRate', methods=['GET'])
         def heartRate():
+            page = self.authorize()
+            if page:
+                return page
+            
             df_heartRate = self.requestMultipleDays()
 
             # Define the layout of the app

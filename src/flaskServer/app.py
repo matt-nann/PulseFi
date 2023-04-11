@@ -7,7 +7,7 @@ from logging import Formatter, FileHandler
 
 from .forms import *
 from .models import User, db
-from __init__ import getSecret
+from __init__ import getSecret, isRunningInCloud
 
 from data.callbacks import FitbitAuth
 
@@ -74,7 +74,7 @@ def create_app():
     # TODO remove me
     @app.route('/checkSecrets',)
     def checkSecrets():
-        return str(getSecret('FITBIT_CLIENT_ID'))
+        return str(getSecret('FITBIT_CLIENT_ID')) + ' isRunningInCloud: ' + str(isRunningInCloud())
 
     @app.route('/about')
     @login_required()
@@ -140,8 +140,6 @@ def create_app():
     fitbitAPI.add_routes(app)
 
     # ============= dash
-
-
     
     if not app.debug:
         file_handler = FileHandler('error.log')

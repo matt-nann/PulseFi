@@ -346,3 +346,184 @@ Traceback (most recent call last):
     self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
 AttributeError: 'FitbitAuth' object has no attribute 'ACCESS_TOKEN'
 2023-04-11 13:47:50,260 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 14:16:00,615 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:16:04,078 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 192, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 145, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 14:16:36,257 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:16:39,048 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 193, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 146, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 14:16:48,763 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 193, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 146, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 14:17:58,656 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:18:01,634 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 200, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 146, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 14:18:22,520 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:18:26,889 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 201, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 146, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 14:20:41,706 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:21:41,729 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:29:53,959 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:32:28,171 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:32:32,475 ERROR: Exception on /('https://www.fitbit.com/oauth2/authorize [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1788, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1770, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1669, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1609, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py", line 135, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/layouts/main.html", line 99, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 5, in block 'content'
+    <p><a href="{{url_for('index')}}">Back</a></p>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
+2023-04-11 14:34:03,070 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 14:34:36,143 ERROR: Exception on /favicon.ico [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1788, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1770, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1669, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1609, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py", line 135, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/layouts/main.html", line 99, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 5, in block 'content'
+    <p><a href="{{url_for('index')}}">Back</a></p>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
+2023-04-11 14:35:00,570 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
