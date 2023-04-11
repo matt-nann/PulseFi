@@ -43,11 +43,15 @@ class Spotify_API:
         scope = "user-read-recently-played, user-top-read, user-read-currently-playing" #, user-read-playback-state, user-modify-playback-state, user-read-playback-position, user-read-private, user-read-email, user-library-read, user-library-modify, playlist-read-private, playlist-read-collaborative, playlist-modify-public, playlist-modify-private, streaming, app-remote-control, user-read-playback-state, user-modify-playback-state, user-read-currently-playing, user-read-recently-played"
         # if serverLess:
         #     redirect_uri = "http://localhost:8888/callback"
-        # elif isRunningInCloud():
-        #     redirect_uri = CLOUD_URL + self.FLASK_AUTHORIZATION
-        # else:
+        if isRunningInCloud():
+            redirect_uri = CLOUD_URL + self.FLASK_AUTHORIZATION
+        else:
         #     redirect_uri = 'http://127.0.0.1:' + str(FLASK_PORT) + self.FLASK_AUTHORIZATION
-        redirect_uri = "http://localhost:8888/callback"
+            redirect_uri = "http://localhost:8888/callback"
+
+
+        # import spotipy
+        # from spotipy.oauth2 import SpotifyOAuth
 
         self.auth_manager = SpotifyOAuth(scope=scope, client_id=self.client_id, client_secret=self.client_secret, redirect_uri=redirect_uri)
         self.sp = spotipy.Spotify(auth_manager=self.auth_manager)
@@ -113,13 +117,12 @@ class Spotify_API:
     
     def add_routes(self, app):
 
-        # @app.route(self.FLASK_AUTHORIZATION, methods=['GET','POST'])
-        # def authorize_spotify():
-        #     print(request.args)
-        #     code = request.args.get('code')
-
-        #     self.unauthorized = False
-        #     return redirect(url_for('recentlyPlayed'))
+        @app.route(self.FLASK_AUTHORIZATION, methods=['GET','POST'])
+        def authorize_spotify():
+            print(request.args)
+            code = request.args.get('code')
+            self.unauthorized = False
+            return redirect(url_for('/'))
 
         @app.route('/recentlyPlayed', methods=['GET'])
         def recentlyPlayed():
