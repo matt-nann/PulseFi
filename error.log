@@ -1,0 +1,26 @@
+2023-04-11 11:18:09,508 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:18:21,843 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 108, in heartRate
+    app.layout = html.Div([
+NameError: name 'html' is not defined
+2023-04-11 11:18:34,249 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:18:44,907 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1826, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1845, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2173, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a DataFrame.

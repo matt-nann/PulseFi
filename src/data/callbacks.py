@@ -7,7 +7,7 @@ from fitbit.api import Fitbit
 from flask import has_request_context
 
 from .gather_keys_oauth2 import OAuth2Server
-from src import getSecret
+from __init__ import getSecret
 
 class FitbitAuth: #OAuth2Server
     def __init__(self):
@@ -105,14 +105,14 @@ class FitbitAuth: #OAuth2Server
 
 
             # Define the layout of the app
-            app.layout = html.Div([
-                dcc.Graph(id='my-graph'),
-                dcc.Dropdown(
-                    id='column-dropdown',
-                    options=[{'label': col, 'value': col} for col in df.columns],
-                    value=df.columns[0]
-                )
-            ])
+            # app.layout = html.Div([
+            #     dcc.Graph(id='my-graph'),
+            #     dcc.Dropdown(
+            #         id='column-dropdown',
+            #         options=[{'label': col, 'value': col} for col in df.columns],
+            #         value=df.columns[0]
+            #     )
+            # ])
             return df_heartRate
 
         # import random

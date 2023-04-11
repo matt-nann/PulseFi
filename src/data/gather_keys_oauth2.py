@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 from base64 import b64encode
 from fitbit.api import Fitbit
 from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
-from .. import getSecret
+from __init__ import getSecret
 
 class OAuth2Server:
     def __init__(self,):
