@@ -73,7 +73,7 @@ def create_app():
     
     @app.route('/checkSecrets',)
     def checkSecrets():
-        return getSecret('RUNNING')
+        return str(getSecret('FITBIT_CLIENT_ID'))
 
     @app.route('/about')
     @login_required()

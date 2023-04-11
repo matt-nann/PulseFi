@@ -216,3 +216,4 @@ Traceback (most recent call last):
 fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
 2023-04-11 12:25:29,186 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
 2023-04-11 12:25:52,046 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 12:42:11,965 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:153]
