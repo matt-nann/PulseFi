@@ -527,3 +527,143 @@ Traceback (most recent call last):
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
 2023-04-11 14:35:00,570 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:152]
+2023-04-11 17:04:09,150 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:04:45,726 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:06:20,392 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:06:27,744 ERROR: Exception on /authorize_spotify [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1826, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1845, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2137, in make_response
+    raise TypeError(
+TypeError: The view function for 'authorize_spotify' did not return a valid response. The function either returned None or ended without a return statement.
+2023-04-11 17:06:27,790 ERROR: Exception on /recentlyPlayed [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 91, in recentlyPlayed
+    return self.recentlyPlayed().to_html()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 57, in recentlyPlayed
+    results = self.sp.current_user_recently_played(limit=50)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 1496, in current_user_recently_played
+    return self._get(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 321, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 245, in _internal_call
+    headers = self._auth_headers()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 236, in _auth_headers
+    token = self.auth_manager.get_access_token(as_dict=False)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 535, in get_access_token
+    "code": code or self.get_auth_response(),
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 490, in get_auth_response
+    return self._get_auth_response_local_server(redirect_port)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 468, in _get_auth_response_local_server
+    raise SpotifyOauthError("Server listening on localhost has not been accessed")
+spotipy.oauth2.SpotifyOauthError: Server listening on localhost has not been accessed
+2023-04-11 17:08:02,990 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:08:10,374 ERROR: Exception on /recentlyPlayed [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 91, in recentlyPlayed
+    return self.recentlyPlayed().to_html()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 57, in recentlyPlayed
+    results = self.sp.current_user_recently_played(limit=50)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 1496, in current_user_recently_played
+    return self._get(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 321, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 245, in _internal_call
+    headers = self._auth_headers()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 236, in _auth_headers
+    token = self.auth_manager.get_access_token(as_dict=False)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 535, in get_access_token
+    "code": code or self.get_auth_response(),
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 490, in get_auth_response
+    return self._get_auth_response_local_server(redirect_port)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 468, in _get_auth_response_local_server
+    raise SpotifyOauthError("Server listening on localhost has not been accessed")
+spotipy.oauth2.SpotifyOauthError: Server listening on localhost has not been accessed
+2023-04-11 17:09:24,649 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:09:30,277 ERROR: Exception on /recentlyPlayed [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 92, in recentlyPlayed
+    return self.recentlyPlayed().to_html()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 58, in recentlyPlayed
+    results = self.sp.current_user_recently_played(limit=50)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 1496, in current_user_recently_played
+    return self._get(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 321, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 245, in _internal_call
+    headers = self._auth_headers()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 236, in _auth_headers
+    token = self.auth_manager.get_access_token(as_dict=False)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 535, in get_access_token
+    "code": code or self.get_auth_response(),
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 490, in get_auth_response
+    return self._get_auth_response_local_server(redirect_port)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 468, in _get_auth_response_local_server
+    raise SpotifyOauthError("Server listening on localhost has not been accessed")
+spotipy.oauth2.SpotifyOauthError: Server listening on localhost has not been accessed
+2023-04-11 17:13:11,577 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:13:14,526 ERROR: Exception on /recentlyPlayed [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 93, in recentlyPlayed
+    return self.recentlyPlayed().to_html()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/spotifyData.py", line 59, in recentlyPlayed
+    results = self.sp.current_user_recently_played(limit=50)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 1496, in current_user_recently_played
+    return self._get(
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 321, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 245, in _internal_call
+    headers = self._auth_headers()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/client.py", line 236, in _auth_headers
+    token = self.auth_manager.get_access_token(as_dict=False)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 535, in get_access_token
+    "code": code or self.get_auth_response(),
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 490, in get_auth_response
+    return self._get_auth_response_local_server(redirect_port)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/spotipy/oauth2.py", line 468, in _get_auth_response_local_server
+    raise SpotifyOauthError("Server listening on localhost has not been accessed")
+spotipy.oauth2.SpotifyOauthError: Server listening on localhost has not been accessed
+2023-04-11 17:17:28,048 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:18:17,112 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:18:38,799 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:19:11,856 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:20:33,675 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:20:50,143 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:157]
+2023-04-11 17:29:50,099 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:158]

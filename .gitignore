@@ -4,3 +4,4 @@ cloud.env
 **/.cache
 /data
 __pycache__/
+.vscode

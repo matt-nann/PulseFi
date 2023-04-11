@@ -9,7 +9,9 @@ from .forms import *
 from .models import User, db
 from __init__ import getSecret, isRunningInCloud
 
-from data.callbacks import FitbitAuth
+from data.fitbitData import Fitbit_API
+from data.spotifyData import Spotify_API
+from data.ouraData import Oura_API
 
 def create_app():
 
@@ -136,10 +138,14 @@ def create_app():
     
 
     # ============= adding in fitbit API data handler  =============
-    fitbitAPI = FitbitAuth()
-    fitbitAPI.add_routes(app)
-
-    # ============= dash
+    fitbit_API = Fitbit_API()
+    fitbit_API.add_routes(app)
+    # ============= spotify API data handler ===========
+    spotify_API = Spotify_API()
+    spotify_API.add_routes(app)
+    # ============= oura API data handler ===========
+    oura_API = Oura_API()
+    oura_API.add_routes(app)
     
     if not app.debug:
         file_handler = FileHandler('error.log')

@@ -1,11 +1,14 @@
-from oura.v2 import OuraClientV2, OuraClientDataFrameV2
 import requests 
 from datetime import datetime, timedelta
+
 import pandas as pd
 
-from src import getSecret
+from oura.v2 import OuraClientV2, OuraClientDataFrameV2
 
-class OuraData(): 
+
+from __init__ import getSecret
+
+class Oura_API(): 
 
     def __init__(self):
         '''
@@ -17,11 +20,31 @@ class OuraData():
         }
 
     def ouraParams(self):
-        params={ 
-            'start_date': '2022-01-01', 
-            'end_date': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d'),
+        endDate = datetime.now()
+        startDate = endDate - timedelta(days=10)
+        # params={ 
+        #     'start_datetime': datetime.strptime('2022-01-01', '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S'),
+        #     'end_datetime': (datetime.now() - timedelta(days=-10)).strftime('%Y-%m-%d %H:%M:%S'),
+        # }
+        params={
+            'start_datetime': startDate.strftime('%Y-%m-%d %H:%M:%S'),
+            'end_datetime': endDate.strftime('%Y-%m-%d %H:%M:%S'),
         }
         return params
+    
+    # def heartRate(self, startDate=None, endDate=None):
+    #     '''
+    #     TODO
+    #     '''
+    #     ouraClient_df = OuraClientDataFrameV2(personal_access_token=getSecret('OURA_KEY'))  
+    #     if startDate is None or endDate is None:
+    #         raw = ouraClient_df.heartrate()
+    #     else:
+    #         raw = ouraClient_df.heartrate(start_date=startDate, end_date =endDate)
+    #         # raw = ouraClient_df.heartrate(
+    #     df_hr = pd.DataFrame(raw['data'])
+    #     df_hr['timestamp'] = pd.to_datetime(df_hr['timestamp'])
+    #     return df_hr
 
     def apiFunctions(self):
 
@@ -78,6 +101,23 @@ class OuraData():
         sleepData = sleepData.loc[sleepData['type'] == 'long_sleep']
         sleepData = sleepData.merge(sleepDaily, how='left', on='day')
         return sleepData
+    def heartRate(self):
+        url = 'https://api.ouraring.com/v2/usercollection/heartrate'
+        response = requests.request('GET', url, headers=self.oura_headers, params=self.ouraParams())
+        # if 'detail' in response.text and response.text['detail'] == "Timerange between start and endtime has to be less than 30 days":
+        #     print("Timerange between start and endtime has to be less than 30 days")
+        #     return None
+        df = pd.read_json(response.text)
+        df = pd.concat([df.drop(['data'], axis=1), df['data'].apply(pd.Series)], axis=1)
+        return df
 
     def saveData(self):
         df_download = pd.read_csv('oura_2022-01-17_2022-12-21_trends.csv')
+
+    def add_routes(self, app):
+
+        @app.route('/oura_heartRate', methods=['GET'])
+        def oura_heartRate():
+            return self.heartRate().to_html()
+
+        return app

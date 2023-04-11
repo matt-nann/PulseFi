@@ -1,34 +1,23 @@
-# gather_keys_oauth2.py file needs to be in the same directory. 
-# also needs to install cherrypy: https://pypi.org/project/CherryPy/
-import pandas as pd 
+import sys
+import traceback
 import datetime
 from datetime import datetime, timedelta
+
+import pandas as pd 
 from fitbit.api import Fitbit
-from flask import has_request_context, redirect, url_for
-import requests
-import traceback
-from flask import request
+from flask import redirect, url_for, request
 from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
 
-from .gather_keys_oauth2 import OAuth2Server
-from __init__ import getSecret
+from __init__ import getSecret, isRunningInCloud, FLASK_PORT, CLOUD_URL
 
-
-import cherrypy
-import os
-import sys
-import threading
-import traceback
-import webbrowser
-import time
-
-from urllib.parse import urlparse
-from base64 import b64encode
-from fitbit.api import Fitbit
-from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
-from __init__ import getSecret, isRunningInCloud, FLASK_PORT
-
-class FitbitAuth:
+class Fitbit_API:
+    """
+        authorization flow
+        anytime the user requests data from fitbit, the user is first checked to see if they are authorized
+        if the user is unauthorized then they are redirected to fitbit's authorization page
+        upon completion the user is redirected back to the app at /authorize, where the access token is retrieved
+        lastly the user is redirected to the page they were on before the authorization flow
+    """
     ALLOTED_AUTH_TIME = 20 # seconds
     def __init__(self):
         self.client_id = getSecret('FITBIT_CLIENT_ID')
@@ -39,12 +28,10 @@ class FitbitAuth:
         self.failedAuth = False
         self.auth2_client = None
 
-        # client_id = getSecret('FITBIT_CLIENT_ID')
-        # client_secret = getSecret('FITBIT_CLIENT_SECRET')
         if isRunningInCloud():
-            redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
+            redirect_uri = CLOUD_URL + '/authorize_fitbit'
         else:
-            redirect_uri ='http://127.0.0.1:'+str(FLASK_PORT)+'/authorize'
+            redirect_uri = 'http://127.0.0.1:'+str(FLASK_PORT)+'/authorize_fitbit'
         
         """ Initialize the FitbitOauth2Client """
         self.success_html = """
@@ -62,10 +49,13 @@ class FitbitAuth:
         self.redirect_uri = redirect_uri
 
     def authorize(self):
+        """
+        
+        """
         if self.failedAuth:
             return 'Failed to authorize Fitbit'
         if self.unauthorized:
-            url, _ = self.fitbit.client.authorize_token_url()  # Add the state parameter to the URL
+            url, _ = self.fitbit.client.authorize_token_url()
             return redirect(url)
     
     def requestMultipleDays(self):
@@ -101,11 +91,10 @@ class FitbitAuth:
     
     def add_routes(self, app):
 
-        @app.route('/authorize', methods=['GET','POST'])
-        def fitbit_auth():
+        @app.route('/authorize_fitbit', methods=['GET','POST'])
+        def authorize_fitbit():
             code = request.args.get('code')
             error = request.args.get('error')
-            print("fitbit_auth", code, error)
             """
             Receive a Fitbit response containing a verification code. Use the code
             to fetch the access_token.
