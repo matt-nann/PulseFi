@@ -1,4 +1,5 @@
 .env
+cloud.env
 /venv
 **/.cache
 /data
