@@ -70,7 +70,8 @@ def create_app():
     @app.route('/')
     def home():
         return render_template('pages/placeholder.home.html')
-    
+
+    # TODO remove me
     @app.route('/checkSecrets',)
     def checkSecrets():
         return str(getSecret('FITBIT_CLIENT_ID'))

@@ -19,7 +19,8 @@ class OAuth2Server:
         client_id = getSecret('FITBIT_CLIENT_ID')
         client_secret = getSecret('FITBIT_CLIENT_SECRET')
         if isRunningInCloud():
-            redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
+            redirect_uri = 'http://127.0.0.1:8090/authorize'
+            # redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
         else:
             redirect_uri='http://127.0.0.1:8090/authorize'
         
