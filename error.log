@@ -24,3 +24,195 @@ Traceback (most recent call last):
   File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2173, in make_response
     raise TypeError(
 TypeError: The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a DataFrame.
+2023-04-11 11:28:44,122 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:29:03,374 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1826, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1845, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2173, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a DataFrame.
+2023-04-11 11:29:51,443 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1826, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1845, in finalize_request
+    response = self.make_response(rv)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2173, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a DataFrame.
+2023-04-11 11:29:56,003 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:30:09,889 ERROR: Exception on /favicon.ico [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1788, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1770, in raise_routing_exception
+    raise request.routing_exception  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/ctx.py", line 351, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 624, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1669, in handle_user_exception
+    return self.handle_http_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1609, in handle_http_exception
+    return self.ensure_sync(handler)(e)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py", line 130, in not_found_error
+    return render_template('errors/404.html'), 404
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/templating.py", line 130, in _render
+    rv = template.render(context)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/jinja2/environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/layouts/main.html", line 99, in top-level template code
+    {% block content %}{% endblock %}
+  File "/Users/mnann/Documents/Code/PulseFi/src/flaskServer/templates/errors/404.html", line 5, in block 'content'
+    <p><a href="{{url_for('index')}}">Back</a></p>
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2034, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2023, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/werkzeug/routing/map.py", line 917, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'login' instead?
+2023-04-11 11:35:01,078 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:35:08,231 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 45, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 592, in intraday_time_series
+    return self.make_request(url)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 256, in make_request
+    response = self.client.make_request(*args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 99, in make_request
+    exceptions.detect_and_raise_error(response)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/exceptions.py", line 92, in detect_and_raise_error
+    raise exc
+fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
+2023-04-11 11:35:24,407 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 45, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 592, in intraday_time_series
+    return self.make_request(url)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 256, in make_request
+    response = self.client.make_request(*args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 99, in make_request
+    exceptions.detect_and_raise_error(response)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/exceptions.py", line 92, in detect_and_raise_error
+    raise exc
+fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
+2023-04-11 11:36:16,517 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 45, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 592, in intraday_time_series
+    return self.make_request(url)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 256, in make_request
+    response = self.client.make_request(*args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 99, in make_request
+    exceptions.detect_and_raise_error(response)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/exceptions.py", line 92, in detect_and_raise_error
+    raise exc
+fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
+2023-04-11 11:37:26,993 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:37:33,382 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 45, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 592, in intraday_time_series
+    return self.make_request(url)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 256, in make_request
+    response = self.client.make_request(*args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 99, in make_request
+    exceptions.detect_and_raise_error(response)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/exceptions.py", line 92, in detect_and_raise_error
+    raise exc
+fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
+2023-04-11 11:55:00,581 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 11:55:06,755 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 45, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 592, in intraday_time_series
+    return self.make_request(url)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 256, in make_request
+    response = self.client.make_request(*args, **kwargs)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/api.py", line 99, in make_request
+    exceptions.detect_and_raise_error(response)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/fitbit/exceptions.py", line 92, in detect_and_raise_error
+    raise exc
+fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
+2023-04-11 12:25:29,186 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
+2023-04-11 12:25:52,046 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]

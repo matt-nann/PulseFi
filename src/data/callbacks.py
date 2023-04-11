@@ -33,10 +33,11 @@ class FitbitAuth: #OAuth2Server
 
     def requestMultipleDays(self):
         self.authorize()
+
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
         endTime = datetime.now().date().strftime("%Y-%m-%d")
-        startTime = (datetime.now() - timedelta(days=30)).date().strftime("%Y-%m-%d")
+        startTime = (datetime.now() - timedelta(days=0)).date().strftime("%Y-%m-%d")
         date_list = []
         df_list = []
         allDates = pd.date_range(start=startTime, end = endTime)
@@ -113,7 +114,8 @@ class FitbitAuth: #OAuth2Server
             #         value=df.columns[0]
             #     )
             # ])
-            return df_heartRate
+            # to html
+            return df_heartRate.to_html()
 
         # import random
         # @app.url_defaults

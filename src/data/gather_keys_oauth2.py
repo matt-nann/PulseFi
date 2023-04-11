@@ -12,13 +12,17 @@ from urllib.parse import urlparse
 from base64 import b64encode
 from fitbit.api import Fitbit
 from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
-from __init__ import getSecret
+from __init__ import getSecret, isRunningInCloud
 
 class OAuth2Server:
     def __init__(self,):
         client_id = getSecret('FITBIT_CLIENT_ID')
         client_secret = getSecret('FITBIT_CLIENT_SECRET')
-        redirect_uri='http://127.0.0.1:8090/'
+        if isRunningInCloud():
+            redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
+        else:
+            redirect_uri='http://127.0.0.1:8090/authorize'
+        
         """ Initialize the FitbitOauth2Client """
         self.success_html = """
             <h1>You are now authorized to access the Fitbit API!</h1>
@@ -51,7 +55,7 @@ class OAuth2Server:
         cherrypy.quickstart(self)
 
     @cherrypy.expose
-    def index(self, state=None, code=None, error=None):
+    def authorize(self, state=None, code=None, error=None):
         # print('state: %s' % state, 'code: %s' % code, 'error: %s' % error)
         """
         Receive a Fitbit response containing a verification code. Use the code

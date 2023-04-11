@@ -5,3 +5,6 @@ load_dotenv()
 
 def getSecret(secret):
     return os.environ.get(secret)
+
+def isRunningInCloud():
+    return os.environ.get('RUNNING') == 'cloud'
