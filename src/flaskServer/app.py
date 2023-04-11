@@ -70,6 +70,10 @@ def create_app():
     @app.route('/')
     def home():
         return render_template('pages/placeholder.home.html')
+    
+    @app.route('/checkSecrets',)
+    def checkSecrets():
+        return getSecret('RUNNING')
 
     @app.route('/about')
     @login_required()

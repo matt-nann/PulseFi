@@ -37,7 +37,7 @@ class FitbitAuth: #OAuth2Server
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
         endTime = datetime.now().date().strftime("%Y-%m-%d")
-        startTime = (datetime.now() - timedelta(days=0)).date().strftime("%Y-%m-%d")
+        startTime = (datetime.now() - timedelta(days=1)).date().strftime("%Y-%m-%d")
         date_list = []
         df_list = []
         allDates = pd.date_range(start=startTime, end = endTime)
