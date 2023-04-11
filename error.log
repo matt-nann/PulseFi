@@ -217,3 +217,132 @@ fitbit.exceptions.HTTPTooManyRequests: Too Many Requests
 2023-04-11 12:25:29,186 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
 2023-04-11 12:25:52,046 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:149]
 2023-04-11 12:42:11,965 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:153]
+2023-04-11 13:06:39,147 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:22:55,708 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:23:00,997 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 104, in heartRate
+    self.authorize()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 30, in authorize
+    self.ACCESS_TOKEN, self.REFRESH_TOKEN = self.retrieve_OAuth_FitBit_Tokens()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 24, in retrieve_OAuth_FitBit_Tokens
+    ACCESS_TOKEN=str(self.server.fitbit.client.session.token['access_token'])
+KeyError: 'access_token'
+2023-04-11 13:24:05,691 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:39:57,179 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:40:21,521 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 174, in heartRate
+    self.authorize()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 97, in authorize
+    self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+AttributeError: 'FitbitAuth' object has no attribute 'ACCESS_TOKEN'
+2023-04-11 13:40:56,383 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:41:21,687 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:41:47,259 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 174, in heartRate
+    self.authorize()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 97, in authorize
+    self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+AttributeError: 'FitbitAuth' object has no attribute 'ACCESS_TOKEN'
+2023-04-11 13:42:34,564 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:42:57,479 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 174, in heartRate
+    self.authorize()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 97, in authorize
+    self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+AttributeError: 'FitbitAuth' object has no attribute 'ACCESS_TOKEN'
+2023-04-11 13:43:07,365 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 175, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 111, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 13:43:15,220 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 175, in heartRate
+    df_heartRate = self.requestMultipleDays()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 111, in requestMultipleDays
+    oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+AttributeError: 'NoneType' object has no attribute 'intraday_time_series'
+2023-04-11 13:43:19,121 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]
+2023-04-11 13:43:23,133 ERROR: Exception on /authorize [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 136, in fitbit_auth
+    state = requests.args.get('state')
+AttributeError: module 'requests' has no attribute 'args'
+2023-04-11 13:43:41,632 ERROR: Exception on /heartRate [GET] [in /Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py:1744]
+Traceback (most recent call last):
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/mnann/Documents/Code/PulseFi/venv/lib/python3.8/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 174, in heartRate
+    self.authorize()
+  File "/Users/mnann/Documents/Code/PulseFi/src/data/callbacks.py", line 97, in authorize
+    self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+AttributeError: 'FitbitAuth' object has no attribute 'ACCESS_TOKEN'
+2023-04-11 13:47:50,260 INFO: errors [in /Users/mnann/Documents/Code/PulseFi/src/flaskServer/app.py:154]

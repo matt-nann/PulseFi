@@ -19,10 +19,9 @@ class OAuth2Server:
         client_id = getSecret('FITBIT_CLIENT_ID')
         client_secret = getSecret('FITBIT_CLIENT_SECRET')
         if isRunningInCloud():
-            redirect_uri = 'http://127.0.0.1:8090/authorize'
-            # redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
+            redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
         else:
-            redirect_uri='http://127.0.0.1:8090/authorize'
+            redirect_uri ='http://127.0.0.1:8090/authorize'
         
         """ Initialize the FitbitOauth2Client """
         self.success_html = """
@@ -46,14 +45,15 @@ class OAuth2Server:
         """
         url, _ = self.fitbit.client.authorize_token_url()
         print('Opening browser to: %s' % url)
-        # Open the web browser in a new thread for command-line browser support
-        threading.Timer(1, webbrowser.open, args=(url,)).start()
 
-        # Same with redirect_uri hostname and port.
-        urlparams = urlparse(self.redirect_uri)
-        cherrypy.config.update({'server.socket_host': urlparams.hostname,
-                                'server.socket_port': urlparams.port})
-        cherrypy.quickstart(self)
+        # Open the web browser in a new thread for command-line browser support
+        threading.Timer(1, webbrowser.open_new_tab, args=(url,)).start()
+
+        # # # Same with redirect_uri hostname and port.
+        # urlparams = urlparse(self.redirect_uri)
+        # cherrypy.config.update({'server.socket_host': urlparams.hostname,
+        #                         'server.socket_port': urlparams.port})
+        # cherrypy.quickstart(self)
 
     @cherrypy.expose
     def authorize(self, state=None, code=None, error=None):

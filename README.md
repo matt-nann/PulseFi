@@ -1,1 +1,3 @@
 PulseFi
+
+![logo](logo.png)

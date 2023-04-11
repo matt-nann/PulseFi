@@ -5,34 +5,104 @@ import datetime
 from datetime import datetime, timedelta
 from fitbit.api import Fitbit
 from flask import has_request_context
+import requests
+import traceback
+from flask import request
+from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
 
 from .gather_keys_oauth2 import OAuth2Server
 from __init__ import getSecret
 
-class FitbitAuth: #OAuth2Server
+
+import cherrypy
+import os
+import sys
+import threading
+import traceback
+import webbrowser
+import time
+
+from urllib.parse import urlparse
+from base64 import b64encode
+from fitbit.api import Fitbit
+from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
+from __init__ import getSecret, isRunningInCloud, FLASK_PORT
+
+class FitbitAuth:
+    ALLOTED_AUTH_TIME = 20 # seconds
     def __init__(self):
         self.client_id = getSecret('FITBIT_CLIENT_ID')
         self.client_secret = getSecret('FITBIT_CLIENT_SECRET')
 
-        self.server = OAuth2Server() 
+        # self.server = OAuth2Server() 
         self.unauthorized = True
+        self.failedAuth = False
         self.auth2_client = None
+
+        # client_id = getSecret('FITBIT_CLIENT_ID')
+        # client_secret = getSecret('FITBIT_CLIENT_SECRET')
+        if isRunningInCloud():
+            redirect_uri = 'https://pulse-fi.herokuapp.com/authorize'
+        else:
+            redirect_uri ='http://127.0.0.1:'+str(FLASK_PORT)+'/authorize'
+        
+        """ Initialize the FitbitOauth2Client """
+        self.success_html = """
+            <h1>You are now authorized to access the Fitbit API!</h1>
+            <br/><h3>You can close this window</h3>"""
+        self.failure_html = """
+            <h1>ERROR: %s</h1><br/><h3>You can close this window</h3>%s"""
+
+        self.fitbit = Fitbit(
+            self.client_id,
+            self.client_secret,
+            redirect_uri=redirect_uri,
+            timeout=100,
+        )
+        self.redirect_uri = redirect_uri
     
     def retrieve_OAuth_FitBit_Tokens(self):
-        if has_request_context():
-            self.server.browser_authorize()
-            ACCESS_TOKEN=str(self.server.fitbit.client.session.token['access_token'])
-            REFRESH_TOKEN=str(self.server.fitbit.client.session.token['refresh_token'])
-            return ACCESS_TOKEN, REFRESH_TOKEN
-
+        # if has_request_context():
+        #     self.server.browser_authorize()
+        #     ACCESS_TOKEN=str(self.server.fitbit.client.session.token['access_token'])
+        #     REFRESH_TOKEN=str(self.server.fitbit.client.session.token['refresh_token'])
+        #     return ACCESS_TOKEN, REFRESH_TOKEN
+        ...
     def authorize(self):
+        """
+        opens up a new tab fitbit authorization page and waits for user to authorize, then returns the access token and refresh token
+        if the user does not authorize within 20 seconds
+        """
         if self.unauthorized:
-            self.ACCESS_TOKEN, self.REFRESH_TOKEN = self.retrieve_OAuth_FitBit_Tokens()
-            self.unauthorized = False
-            self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
+            # self.retrieve_OAuth_FitBit_Tokens()
+            if has_request_context():
+                url, _ = self.fitbit.client.authorize_token_url()
+                threading.Timer(1, webbrowser.open_new_tab, args=(url,)).start()
+
+                start_time = time.time()
+                try:
+                    while True:
+                        try:
+                            access_token = self.fitbit.client.session.token['access_token']
+                            refresh_token = self.fitbit.client.session.token['refresh_token']
+                            break
+                        except KeyError:
+                            time.sleep(1)
+                            if time.time() - start_time > self.ALLOTED_AUTH_TIME:
+                                raise Exception('Timeout waiting for authorization')
+                except Exception as e:
+                    self.failedAuth = True
+                    return
+                
+                self.ACCESS_TOKEN=str(access_token)
+                self.REFRESH_TOKEN=str(refresh_token)
+                self.unauthorized = False
+                self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
 
     def requestMultipleDays(self):
         self.authorize()
+        if self.failedAuth:
+            return None
 
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
@@ -59,51 +129,39 @@ class FitbitAuth: #OAuth2Server
         df_heartRate['datetime'] = pd.to_datetime(df_heartRate['date']) +pd.to_timedelta(df_heartRate['time'])
         return df_heartRate
 
+    def _fmt_failure(self, message):
+        tb = traceback.format_tb(sys.exc_info()[2])
+        tb_html = '<pre>%s</pre>' % ('\n'.join(tb)) if tb else ''
+        return self.failure_html % (message, tb_html)
+    
     def add_routes(self, app):
 
-        # @app.route('/fitbit_auth', methods=['GET','POST'])
-        # def fitbit_auth():
-        #     state = request.args.get('state')
-        #     code = request.args.get('code')
-        #     error = request.args.get('error')
-        #     endpoint = request.args.get('endpoint')
-        #     print('fitbit_auth', state, code, error)
-        #     """
-        #     Receive a Fitbit response containing a verification code. Use the code
-        #     to fetch the access_token.
-        #     """
-        #     error = None
-        #     if code:
-        #         try:
-        #             self.fitbit.client.fetch_access_token(code)
-        #             # self.ACCESS_TOKEN=code
-        #             # self.REFRESH_TOKEN=state
-        #             # print('setting access token', self.ACCESS_TOKEN)
-        #         except MissingTokenError:
-        #             error = self._fmt_failure(
-        #                 'Missing access token parameter.</br>Please check that '
-        #                 'you are using the correct client_secret')
-        #         except MismatchingStateError:
-        #             error = self._fmt_failure('CSRF Warning! Mismatching state')
-        #     else:
-        #         error = self._fmt_failure('Unknown error while authenticating')
-        #     # Use a thread to shutdown cherrypy so we can return HTML first
-        #     return error if error else self.success_html
-        
-        # from flask import Blueprint
-
-        # heart_rate_bp = Blueprint('heart_rate_bp', __name__)
-
-        # @heart_rate_bp.route('/heartRate')
-        # def heartRate():
-        #     # your route implementation here
+        @app.route('/authorize', methods=['GET','POST'])
+        def fitbit_auth():
+            code = request.args.get('code')
+            error = request.args.get('error')
+            """
+            Receive a Fitbit response containing a verification code. Use the code
+            to fetch the access_token.
+            """
+            error = None
+            if code:
+                try:
+                    self.fitbit.client.fetch_access_token(code)
+                except MissingTokenError:
+                    error = self._fmt_failure(
+                        'Missing access token parameter.</br>Please check that '
+                        'you are using the correct client_secret')
+                except MismatchingStateError:
+                    error = self._fmt_failure('CSRF Warning! Mismatching state')
+            else:
+                error = self._fmt_failure('Unknown error while authenticating')
+            return error if error else self.success_html
 
 
         @app.route('/heartRate', methods=['GET'])
         def heartRate():
-            self.authorize()
             df_heartRate = self.requestMultipleDays()
-
 
             # Define the layout of the app
             # app.layout = html.Div([
@@ -127,18 +185,15 @@ class FitbitAuth: #OAuth2Server
         #     if request.path == '/heartRate':
         #         response.headers['Cache-Control'] = 'no-store'
         #     return response
-
         # @app.url_defaults
         # def add_random_number(endpoint, values):
         #     if endpoint == 'heartRate':
-        #         values.setdefault('random', str(random.randint(0, 999999)))
-
+        #         values.setdefault('random', str(random.randint(0, 999999))
         # @app.url_value_preprocessor
         # def check_random_number(endpoint, values):
         #     if endpoint == 'heartRate':
         #         if 'random' not in values:
         #             return 'Invalid request', 400
-        
         # app.register_blueprint(heart_rate_bp, lazy_load=True)
 
         return app

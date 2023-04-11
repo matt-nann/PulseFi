@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+FLASK_PORT = 8080
+
 load_dotenv()
 
 def getSecret(secret):

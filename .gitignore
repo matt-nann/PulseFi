@@ -3,4 +3,4 @@ cloud.env
 /venv
 **/.cache
 /data
-**/.pyc
+__pycache__/
