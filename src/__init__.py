@@ -11,3 +11,9 @@ def getSecret(secret):
 
 def isRunningInCloud():
     return os.environ.get('RUNNING') == 'cloud'
+
+def baseUrl():
+    if isRunningInCloud():
+        return CLOUD_URL
+    else:
+        return 'http://127.0.0.1:'+str(FLASK_PORT)

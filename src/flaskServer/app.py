@@ -1,17 +1,19 @@
 import os
 from flask import Flask, render_template, request, flash, redirect, url_for, abort
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from flask_migrate import Migrate
 import logging
 from functools import wraps
 from logging import Formatter, FileHandler
+import requests
+import pandas as pd
 
 from .forms import *
 from .models import User, db
-from __init__ import getSecret, isRunningInCloud
-
-from data.fitbitData import Fitbit_API
-from data.spotifyData import Spotify_API
-from data.ouraData import Oura_API
+from src import getSecret, isRunningInCloud, baseUrl
+from src.data.fitbitData import Fitbit_API
+from src.data.spotifyData import Spotify_API
+from src.data.ouraData import Oura_API
 
 def create_app():
 
@@ -35,15 +37,17 @@ def create_app():
     login_manager.init_app(app)
 
     db.init_app(app)
+    migrate = Migrate(app, db)
     with app.app_context():
         db.create_all()
 
-    # app.config.from_object('config')
+    def resetAPI_Auth():
+        if current_user and current_user.is_authenticated:
+            current_user.fitbit_authorized = False
+            current_user.spotify_authorized = False
+            db.session.commit()
 
-    # # Automatically tear down SQLAlchemy.
-    # @app.teardown_request
-    # def shutdown_session(exception=None):
-    #     db_session.remove()
+    resetAPI_Auth()
 
     @login_manager.user_loader
     def user_loader(user_id):
@@ -51,7 +55,6 @@ def create_app():
         :param unicode user_id: user_id (email) user to retrieve
         """
         return User.query.get(user_id)
-
 
     def login_required(): # role='ANY'
         def wrapper(fn):
@@ -64,10 +67,22 @@ def create_app():
                 return fn(*args, **kwargs)
             return decorated_view
         return wrapper
-
-    #----------------------------------------------------------------------------#
-    # Controllers.
-    #----------------------------------------------------------------------------#
+    
+    def spotify_and_fitbit_authorized_required(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated:
+                return app.login_manager.unauthorized()
+            if not current_user.fitbit_authorized:
+                # Redirect to the Fitbit authorization page
+                return redirect(url_for('user_authorize_fitbit'))
+            if not current_user.spotify_authorized:
+                # Redirect to the Spotify authorization page
+                return redirect(url_for('user_authorize_spotify'))
+            
+            return fn(*args, **kwargs)
+        
+        return decorated_view
 
     @app.route('/')
     def home():
@@ -92,6 +107,7 @@ def create_app():
             user = User.query.filter_by(username=form.username.data).first()
             if user and user.password == form.password.data:
                 login_user(user, remember=True)
+                resetAPI_Auth() 
                 return redirect(url_for('home'))
             else:
                 flash('Login unsuccessful. Please check email and password', 'danger')
@@ -139,13 +155,34 @@ def create_app():
 
     # ============= adding in fitbit API data handler  =============
     fitbit_API = Fitbit_API()
-    fitbit_API.add_routes(app)
+    fitbit_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= spotify API data handler ===========
     spotify_API = Spotify_API()
-    spotify_API.add_routes(app)
+    spotify_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= oura API data handler ===========
     oura_API = Oura_API()
-    oura_API.add_routes(app)
+    oura_API.add_routes(app, db)
+
+    @app.route('/graph', methods=['GET'])
+    @spotify_and_fitbit_authorized_required
+    def graph():
+        url = baseUrl() + '/heartRate'
+        response = requests.get(url)
+        print(response.text)
+        df_heartRate = pd.DataFrame(response.text)
+
+        url = baseUrl() + '/recentlyPlayed'
+        response = requests.get(url)
+        df_recentlyPlayed = pd.DataFrame(response.text)
+
+        import plotly.graph_objects as go
+
+        # # create a plotly graph
+        # fig = go.Figure()
+        # fig.add_trace(go.Scatter(x=df_heartRate['dateTime'], y=df_heartRate['value'], name='Heart Rate'))
+        # fig.add_trace(go.Scatter(x=df_recentlyPlayed['played_at'], y=df_recentlyPlayed['energy'], name='Energy'))
+        # fig.update_layout(title='Heart Rate and Energy', xaxis_title='Date', yaxis_title='Value')
+        return df_heartRate.to_html()
     
     if not app.debug:
         file_handler = FileHandler('error.log')

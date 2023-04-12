@@ -1,5 +1,5 @@
-from __init__ import FLASK_PORT
-from flaskServer.app import create_app
+from src import FLASK_PORT
+from src.flaskServer.app import create_app
 
 app = create_app()
 

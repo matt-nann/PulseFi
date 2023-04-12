@@ -9,6 +9,12 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(120), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(30))
+    fitbit_authorized = db.Column(db.Boolean, default=False)
+    fitbit_access_token = db.Column(db.String(120))
+    fitbit_refresh_token = db.Column(db.String(120))
+    spotify_authorized = db.Column(db.Boolean, default=False)
+    spotify_token = db.Column(db.String(120))
+
     def __init__(self, username=None, email=None):
         self.username = username
         self.email = email

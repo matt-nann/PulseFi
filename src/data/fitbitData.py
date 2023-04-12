@@ -6,9 +6,10 @@ from datetime import datetime, timedelta
 import pandas as pd 
 from fitbit.api import Fitbit
 from flask import redirect, url_for, request
+from flask_login import current_user
 from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
 
-from __init__ import getSecret, isRunningInCloud, FLASK_PORT, CLOUD_URL
+from src import getSecret, isRunningInCloud, FLASK_PORT, CLOUD_URL
 
 class Fitbit_API:
     """
@@ -22,11 +23,6 @@ class Fitbit_API:
     def __init__(self):
         self.client_id = getSecret('FITBIT_CLIENT_ID')
         self.client_secret = getSecret('FITBIT_CLIENT_SECRET')
-
-        # self.server = OAuth2Server() 
-        self.unauthorized = True
-        self.failedAuth = False
-        self.auth2_client = None
 
         if isRunningInCloud():
             redirect_uri = CLOUD_URL + '/authorize_fitbit'
@@ -52,13 +48,14 @@ class Fitbit_API:
         """
         
         """
-        if self.failedAuth:
-            return 'Failed to authorize Fitbit'
-        if self.unauthorized:
+        if not current_user.fitbit_authorized:
             url, _ = self.fitbit.client.authorize_token_url()
             return redirect(url)
-    
-    def requestMultipleDays(self):
+        
+    def retrieveAuthClient(self):
+        return Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=current_user.fitbit_access_token,refresh_token=current_user.fitbit_refresh_token)
+
+    def heartRate(self):
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
         endTime = datetime.now().date().strftime("%Y-%m-%d")
@@ -68,7 +65,7 @@ class Fitbit_API:
         allDates = pd.date_range(start=startTime, end = endTime)
         for oneDate in allDates:
             oneDate = oneDate.date().strftime("%Y-%m-%d")
-            oneDayData = self.auth2_client.intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
+            oneDayData = self.retrieveAuthClient().intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
             df = pd.DataFrame(oneDayData['activities-heart-intraday']['dataset'])
             date_list.append(oneDate)
             df_list.append(df)
@@ -89,7 +86,7 @@ class Fitbit_API:
         tb_html = '<pre>%s</pre>' % ('\n'.join(tb)) if tb else ''
         return self.failure_html % (message, tb_html)
     
-    def add_routes(self, app):
+    def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
 
         @app.route('/authorize_fitbit', methods=['GET','POST'])
         def authorize_fitbit():
@@ -114,31 +111,26 @@ class Fitbit_API:
             if error:
                 return error
             else:
-                self.ACCESS_TOKEN=str(self.fitbit.client.session.token['access_token'])
-                self.REFRESH_TOKEN=str(self.fitbit.client.session.token['refresh_token'])
-                self.unauthorized = False
-                self.auth2_client=Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=self.ACCESS_TOKEN,refresh_token=self.REFRESH_TOKEN)
-                return redirect(url_for('heartRate'))
-
-        @app.route('/heartRate', methods=['GET'])
-        def heartRate():
+                ACCESS_TOKEN=str(self.fitbit.client.session.token['access_token'])
+                REFRESH_TOKEN=str(self.fitbit.client.session.token['refresh_token'])
+                current_user.fitbit_authorized = True
+                current_user.fitbit_access_token = ACCESS_TOKEN
+                current_user.fitbit_refresh_token = REFRESH_TOKEN
+                db.session.commit()
+                return redirect(url_for('home'))
+            
+        @app.route('/user_authorize_fitbit', methods=['GET'])
+        def user_authorize_fitbit():
             page = self.authorize()
             if page:
                 return page
-            
-            df_heartRate = self.requestMultipleDays()
+            return redirect(url_for('home'))
 
-            # Define the layout of the app
-            # app.layout = html.Div([
-            #     dcc.Graph(id='my-graph'),
-            #     dcc.Dropdown(
-            #         id='column-dropdown',
-            #         options=[{'label': col, 'value': col} for col in df.columns],
-            #         value=df.columns[0]
-            #     )
-            # ])
-            # to html
-            return df_heartRate.to_html()
+        @app.route('/heartRate', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def heartRate():
+            df_heartRate = self.heartRate()
+            return df_heartRate.to_dict(orient='records')
 
         # import random
         # @app.url_defaults

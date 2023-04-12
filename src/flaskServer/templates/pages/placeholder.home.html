@@ -1,10 +1,19 @@
 {% extends 'layouts/main.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-
-<div class="page-header">
-  <h1>Sticky footer with fixed navbar</h1>
-</div>
-<p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
-
+  {% if current_user.is_authenticated %}
+    {% if not current_user.spotify_authorized %}
+      <li><a href="#" onclick="document.getElementById('user_authorize_spotify').submit();return false;">Authorize Spotify</a></li>
+      <form id="user_authorize_spotify" method="get" class="form" action="{{ url_for('user_authorize_spotify') }}"></form>
+    {% endif %}
+    {% if not current_user.fitbit_authorized %}
+    <li><a href="#" onclick="document.getElementById('user_authorize_fitbit').submit();return false;">Authorize Fitbit</a></li>
+    <form id="user_authorize_fitbit" method="get" class="form" action="{{ url_for('user_authorize_fitbit') }}"></form>
+    {% endif %}
+  {% else %}
+    <div class="page-header">
+      <h1>Sticky footer with fixed navbar</h1>
+    </div>
+    <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+  {% endif %}
 {% endblock %}

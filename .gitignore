@@ -5,3 +5,6 @@ cloud.env
 /data
 __pycache__/
 .vscode
+.log
+error.log
+**/.DS_Store

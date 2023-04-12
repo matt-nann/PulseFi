@@ -1,45 +1,11 @@
-import os
-import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-from spotipy.oauth2 import SpotifyClientCredentials
-from dotenv import load_dotenv
-import pandas as pd
-
-import sys
-import traceback
-import datetime
-from datetime import datetime, timedelta
-
-import pandas as pd 
-from fitbit.api import Fitbit
-from flask import redirect, url_for, request
-from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
-
-from __init__ import getSecret, isRunningInCloud, CLOUD_URL, FLASK_PORT
-
 import json
-from flask import Flask, request, redirect, g, render_template
 import requests
+import pandas as pd 
+from flask import redirect, url_for, request
+from flask_login import current_user
 from urllib.parse import quote
 
-# Authentication Steps, paramaters, and responses are defined at https://developer.spotify.com/web-api/authorization-guide/
-# Visit this url to see all the steps, parameters, and expected response.
-
-
-# # Process each track
-# for item in results['items']:
-#     track = item['track']
-#     track_name = track['name']
-#     artist_name = track['artists'][0]['name']
-#     track_id = track['id']
-    
-#     # Get audio features for the track
-#     audio_features = sp.audio_features([track_id])
-#     bpm = audio_features[0]['tempo']
-    
-#     # Print characteristics and BPM for the track
-#     print(f"{track_name} by {artist_name} (BPM: {bpm})")
-
+from src import getSecret, isRunningInCloud, CLOUD_URL, FLASK_PORT
 
 class Spotify_API:
     FLASK_AUTHORIZATION = '/authorize_spotify'
@@ -86,9 +52,6 @@ class Spotify_API:
         # building the spotify authenication url
         url_args = "&".join(["{}={}".format(key, quote(val)) for key, val in auth_query_parameters.items()])
         self.auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
-
-        self.unauthorized = True
-        self.failedAuth = False
     
     def search(self):
         d = []
@@ -122,26 +85,27 @@ class Spotify_API:
         """
         
         """
-        if self.failedAuth:
-            return 'Failed to authorize Fitbit'
-        if self.unauthorized:
+        if not current_user.spotify_authorized:
             return redirect(self.auth_url)
-        
+    
+    def buildAuthHeader(self):
+        return {"Authorization": "Bearer {}".format(current_user.spotify_token)}
+
     def user_data(self):
         user_profile_api_endpoint = "{}/me".format(self.SPOTIFY_API_URL)
-        profile_response = requests.get(user_profile_api_endpoint, headers=self.authorization_header)
+        profile_response = requests.get(user_profile_api_endpoint, headers=self.buildAuthHeader())
         profile_data = json.loads(profile_response.text)
         # return profile_data
 
         playlist_api_endpoint = "{}/playlists".format(profile_data["href"])
-        playlists_response = requests.get(playlist_api_endpoint, headers=self.authorization_header)
+        playlists_response = requests.get(playlist_api_endpoint, headers=self.buildAuthHeader())
         playlist_data = json.loads(playlists_response.text)
         display_arr = [profile_data] + playlist_data["items"]
         return display_arr
     
     def recentlyPlayed(self, num_entries=50):
         recently_played_api_endpoint = "{}/me/player/recently-played".format(self.SPOTIFY_API_URL)
-        recently_played_response = requests.get(recently_played_api_endpoint, headers=self.authorization_header, params={'limit': num_entries})
+        recently_played_response = requests.get(recently_played_api_endpoint, headers=self.buildAuthHeader(), params={'limit': num_entries})
         recently_played_data = json.loads(recently_played_response.text)
         df_played = pd.DataFrame(recently_played_data['items'])
         df_played['name'] = df_played['track'].apply(lambda x: x['name'])
@@ -167,10 +131,10 @@ class Spotify_API:
 
         return df_played
 
-    def add_routes(self, app):
+    def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
 
         @app.route("/authorize_spotify")
-        def callback():
+        def authorize_spotify():
             auth_token = request.args['code']
             code_payload = {
                 "grant_type": "authorization_code",
@@ -182,20 +146,27 @@ class Spotify_API:
             post_request = requests.post(self.SPOTIFY_TOKEN_URL, data=code_payload)
 
             response_data = json.loads(post_request.text)
-            self.access_token = response_data["access_token"]
+            access_token = response_data["access_token"]
             refresh_token = response_data["refresh_token"]
             token_type = response_data["token_type"]
             expires_in = response_data["expires_in"]    
-            self.authorization_header = {"Authorization": "Bearer {}".format(self.access_token)}
-            self.unauthorized = False
             
-            return redirect(url_for('recentlyPlayed'))
-
-        @app.route('/recentlyPlayed', methods=['GET'])
-        def recentlyPlayed():
+            current_user.spotify_token = response_data["access_token"]
+            current_user.spotify_authorized = True
+            db.session.commit()
+            
+            return  redirect(url_for('home'))
+        
+        @app.route('/user_authorize_spotify', methods=['GET'])
+        def user_authorize_spotify():
             page = self.authorize()
             if page:
                 return page
-            return self.recentlyPlayed().to_html()
+            return redirect(url_for('home'))
+
+        @app.route('/recentlyPlayed', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def recentlyPlayed():
+            return self.recentlyPlayed().to_dict(orient='records')
             
         return app

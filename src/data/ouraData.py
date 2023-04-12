@@ -6,7 +6,7 @@ import pandas as pd
 from oura.v2 import OuraClientV2, OuraClientDataFrameV2
 
 
-from __init__ import getSecret
+from src import getSecret
 
 class Oura_API(): 
 
@@ -114,7 +114,7 @@ class Oura_API():
     def saveData(self):
         df_download = pd.read_csv('oura_2022-01-17_2022-12-21_trends.csv')
 
-    def add_routes(self, app):
+    def add_routes(self, app, db):
 
         @app.route('/oura_heartRate', methods=['GET'])
         def oura_heartRate():
