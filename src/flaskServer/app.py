@@ -11,9 +11,10 @@ import pandas as pd
 from .forms import *
 from .models import User, db
 from src import getSecret, isRunningInCloud, baseUrl
-from src.data.fitbitData import Fitbit_API
-from src.data.spotifyData import Spotify_API
-from src.data.ouraData import Oura_API
+from src.APIs.fitbitData import Fitbit_API
+from src.APIs.spotifyData import Spotify_API
+from src.APIs.ouraData import Oura_API
+from src.dashboard import add_dash_routes
 
 def create_app():
 
@@ -86,7 +87,7 @@ def create_app():
 
     @app.route('/')
     def home():
-        return render_template('pages/placeholder.home.html')
+        return render_template('pages/home.html')
 
     # TODO remove me
     @app.route('/checkSecrets',)
@@ -96,7 +97,7 @@ def create_app():
     @app.route('/about')
     @login_required()
     def about():
-        return render_template('pages/placeholder.about.html')
+        return render_template('pages/about.html')
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
@@ -155,34 +156,36 @@ def create_app():
 
     # ============= adding in fitbit API data handler  =============
     fitbit_API = Fitbit_API()
+    setattr(app, 'fitbit_API', fitbit_API)
     fitbit_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= spotify API data handler ===========
-    spotify_API = Spotify_API()
+    spotify_API = Spotify_API(db)
+    setattr(app, 'spotify_API', spotify_API)
     spotify_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= oura API data handler ===========
     oura_API = Oura_API()
+    setattr(app, 'oura_API', oura_API)
     oura_API.add_routes(app, db)
+    # ============= dash graphs ===========
+    dashApp = add_dash_routes(app, db, spotify_and_fitbit_authorized_required)
 
     @app.route('/graph', methods=['GET'])
     @spotify_and_fitbit_authorized_required
     def graph():
-        url = baseUrl() + '/heartRate'
-        response = requests.get(url)
-        print(response.text)
-        df_heartRate = pd.DataFrame(response.text)
 
-        url = baseUrl() + '/recentlyPlayed'
-        response = requests.get(url)
-        df_recentlyPlayed = pd.DataFrame(response.text)
+        df_heartRate = fitbit_API.heartRateData()
+        df_recentlyPlayed = spotify_API.recentlyPlayedData()
 
-        import plotly.graph_objects as go
+        audio_features = spotify_API.getAudioFeatures(df_recentlyPlayed)
+        # import plotly.graph_objects as go
 
         # # create a plotly graph
         # fig = go.Figure()
-        # fig.add_trace(go.Scatter(x=df_heartRate['dateTime'], y=df_heartRate['value'], name='Heart Rate'))
-        # fig.add_trace(go.Scatter(x=df_recentlyPlayed['played_at'], y=df_recentlyPlayed['energy'], name='Energy'))
+        # fig.add_trace(go.Scatter(x=df_heartRate['datetime'], y=df_heartRate['bpm'], name='Heart Rate'))
+        # # fig.add_trace(go.Scatter(x=df_recentlyPlayed['played_at'], y=df_recentlyPlayed['energy'], name='Energy'))
         # fig.update_layout(title='Heart Rate and Energy', xaxis_title='Date', yaxis_title='Value')
-        return df_heartRate.to_html()
+
+        return audio_features.to_html()
     
     if not app.debug:
         file_handler = FileHandler('error.log')

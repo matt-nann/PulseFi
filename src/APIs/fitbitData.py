@@ -55,7 +55,7 @@ class Fitbit_API:
     def retrieveAuthClient(self):
         return Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=current_user.fitbit_access_token,refresh_token=current_user.fitbit_refresh_token)
 
-    def heartRate(self):
+    def heartRateData(self):
         startTime = datetime.strptime('2022-07-03', '%Y-%m-%d')
         endTime = datetime.strptime('2022-10-31', '%Y-%m-%d')
         endTime = datetime.now().date().strftime("%Y-%m-%d")
@@ -79,6 +79,7 @@ class Fitbit_API:
 
         df_heartRate = pd.concat(final_df_list, axis = 0)
         df_heartRate['datetime'] = pd.to_datetime(df_heartRate['date']) +pd.to_timedelta(df_heartRate['time'])
+        df_heartRate.rename(columns={'value':'bpm'}, inplace=True)
         return df_heartRate
 
     def _fmt_failure(self, message):
@@ -129,7 +130,7 @@ class Fitbit_API:
         @app.route('/heartRate', methods=['GET'])
         @spotify_and_fitbit_authorized_required
         def heartRate():
-            df_heartRate = self.heartRate()
+            df_heartRate = self.heartRateData()
             return df_heartRate.to_dict(orient='records')
 
         # import random

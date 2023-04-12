@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     fitbit_refresh_token = db.Column(db.String(120))
     spotify_authorized = db.Column(db.Boolean, default=False)
     spotify_token = db.Column(db.String(120))
+    spotify_refresh_token = db.Column(db.String(120))
 
     def __init__(self, username=None, email=None):
         self.username = username
