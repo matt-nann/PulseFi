@@ -17,13 +17,7 @@ from src.flaskServer.models import User, db
 
 def create_app():
 
-    #----------------------------------------------------------------------------#
-    # App Config.
-    #----------------------------------------------------------------------------#
-
     app = Flask(__name__)
-    # Grabs the folder where the script runs.
-    basedir = os.path.abspath(os.path.dirname(__file__))
 
     app.config.from_object(Config)
     
@@ -95,20 +89,59 @@ def create_app():
     def about():
         return render_template('pages/about.html')
     
+    # @app.route('/login', methods=['GET', 'POST'])
+    # def login():
+    #     if current_user.is_authenticated:
+    #         return redirect(url_for('home'))
+    #     form = LoginForm()
+    #     if form.validate_on_submit():
+    #         if 'guest_login' in request.form:
+    #             # Authenticate the guest account
+    #             guest_username = getSecret('GUEST_USERNAME')
+    #             guest_password = getSecret('GUEST_PASSWORD')
+    #             guest_user = User.query.filter_by(username=guest_username).first()
+    #             if guest_user is not None and guest_user.check_password(guest_password):
+    #                 login_user(guest_user)
+    #                 current_user.fitbit_authorized = True
+    #                 current_user.spotify_authorized = True
+    #                 db.session.commit()
+    #                 return redirect(url_for('home'))
+    #             else:
+    #                 flash('Invalid guest account credentials.', 'danger')
+    #         else:
+    #             # Authenticate the user's credentials
+    #             user = User.query.filter_by(username=form.username.data).first()
+    #             if user is not None and user.check_password(form.password.data):
+    #                 login_user(user, remember=True)
+    #                 resetAPI_Auth()  # replace with your function to reset the API authentication
+    #                 return redirect(url_for('home'))
+    #             else:
+    #                 flash('Invalid username or password.', 'danger')
+    #     return render_template('forms/login.html', title='Login', form=form)
+    
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('home'))
         form = LoginForm()
+        guest_login_clicked = False
+        print('form.validate_on_submit()', guest_login_clicked)
         if form.validate_on_submit():
-            user = User.query.filter_by(username=form.username.data).first()
-            if user and user.password == form.password.data:
+            if request.form.get('guest_login'):
+                guest_login_clicked = True
+                user = User.query.filter_by(username=getSecret('GUEST_USERNAME')).first()
                 login_user(user, remember=True)
-                resetAPI_Auth() 
                 return redirect(url_for('home'))
             else:
-                flash('Login unsuccessful. Please check email and password', 'danger')
-        return render_template('forms/login.html', title='Login', form=form)
+                user = User.query.filter_by(username=form.username.data).first()
+                if user and user.password == form.password.data:
+                    login_user(user, remember=True)
+                    resetAPI_Auth() 
+                    return redirect(url_for('home'))
+                else:
+                    flash('Login unsuccessful. Please check email and password', 'danger')
+        return render_template('forms/login.html', title='Login', form=form, guest_login_clicked=guest_login_clicked)
+
 
     @app.route("/logout", methods=["POST"])
     def logout():

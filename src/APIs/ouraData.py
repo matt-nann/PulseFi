@@ -1,10 +1,7 @@
 import requests 
 from datetime import datetime, timedelta
-
 import pandas as pd
-
 from oura.v2 import OuraClientV2, OuraClientDataFrameV2
-
 
 from src import getSecret
 
@@ -31,20 +28,6 @@ class Oura_API():
             'end_datetime': endDate.strftime('%Y-%m-%d %H:%M:%S'),
         }
         return params
-    
-    # def heartRate(self, startDate=None, endDate=None):
-    #     '''
-    #     TODO
-    #     '''
-    #     ouraClient_df = OuraClientDataFrameV2(personal_access_token=getSecret('OURA_KEY'))  
-    #     if startDate is None or endDate is None:
-    #         raw = ouraClient_df.heartrate()
-    #     else:
-    #         raw = ouraClient_df.heartrate(start_date=startDate, end_date =endDate)
-    #         # raw = ouraClient_df.heartrate(
-    #     df_hr = pd.DataFrame(raw['data'])
-    #     df_hr['timestamp'] = pd.to_datetime(df_hr['timestamp'])
-    #     return df_hr
 
     def apiFunctions(self):
 

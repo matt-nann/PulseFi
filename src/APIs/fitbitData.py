@@ -179,27 +179,5 @@ class Fitbit_API:
         def heartRate():
             df_heartRate = self.heartRateData()
             return df_heartRate.to_html()
-            # return df_heartRate.to_dict(orient='records')
-
-        # import random
-        # @app.url_defaults
-        # def add_random_number(endpoint, values):
-        #     if endpoint == 'heartRate':
-        #         values.setdefault('random', str(random.randint(0, 999999)))
-        # @app.after_request
-        # def add_header(response):
-        #     if request.path == '/heartRate':
-        #         response.headers['Cache-Control'] = 'no-store'
-        #     return response
-        # @app.url_defaults
-        # def add_random_number(endpoint, values):
-        #     if endpoint == 'heartRate':
-        #         values.setdefault('random', str(random.randint(0, 999999))
-        # @app.url_value_preprocessor
-        # def check_random_number(endpoint, values):
-        #     if endpoint == 'heartRate':
-        #         if 'random' not in values:
-        #             return 'Invalid request', 400
-        # app.register_blueprint(heart_rate_bp, lazy_load=True)
 
         return app
