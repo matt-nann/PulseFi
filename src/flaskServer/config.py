@@ -9,7 +9,7 @@ class Config:
     SECRET_KEY = "o'lEd~n48G[3&@XVF2*]u1`VPF7P%I%,:OA@wuI`.5|%$4neB>h{q=S1N<R5AKL"
 
     if isRunningInCloud():
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql://')
     else:
         SQL_username = str(getSecret('SQL_User'))
         SQL_password = str(getSecret('SQL_Password'))
