@@ -34,10 +34,12 @@ class Spotify_API:
             self.REDIRECT_URI = "{}:{}/authorize_spotify".format(CLIENT_SIDE_URL, PORT)
         
         SCOPE = "user-read-recently-played, user-top-read, user-read-currently-playing, playlist-modify-public playlist-modify-private"
+        SCOPE += " user-read-playback-state"
+        SCOPE += " user-modify-playback-state" # have the API change the currently playing music
         STATE = ""
 
         # self.client_id = os.environ.get('SPOTIFY_CLIENT_ID')
-        # self.client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')
+        # self.client_secret = os.environ.get('SPOTIFY_CLIENT_SECRET')heartRateData allDates:
 
         auth_query_parameters = {
             "response_type": "code",
@@ -95,28 +97,54 @@ class Spotify_API:
     def buildAuthHeader(self):
         return {"Authorization": "Bearer {}".format(current_user.spotify_token)}
     
-    def requestHandler(self, endpoint, params={}):
+    def refreshAccessToken(self):
+        if current_user.spotify_refresh_token is None:
+            raise ValueError("Refresh token is not set.")
+        post_data = {
+            "grant_type": "refresh_token",
+            "refresh_token": current_user.spotify_refresh_token,
+            "client_id": self.CLIENT_ID,
+            "client_secret": self.CLIENT_SECRET
+        }
+        post_request = requests.post(self.SPOTIFY_TOKEN_URL, data=post_data)
+        response_data = json.loads(post_request.text)
+
+        # response_data["token_type"] response_data["expires_in"]
+        
+        current_user.spotify_authorized = True
+        current_user.spotify_token = response_data["access_token"]
+        print("Refreshed access token")
+        self.db.session.commit()
+    
+    def getRequest(self, endpoint, params={}):
         response = requests.get(endpoint, headers=self.buildAuthHeader(), params=params)
         data = json.loads(response.text)
         if 'error' in data and data['error']['status'] == 401:
             if 'message' in data['error'] and data['error']['message'] == "The access token expired":   
                 self.refreshAccessToken()
-                return self.requestHandler(endpoint, params=params)
+                return self.getRequest(endpoint, params=params)
         else:
             return data
+        
+    def postRequest(self, endpoint, data={}):
+        response = requests.put(endpoint, data=json.dumps(data), headers=self.buildAuthHeader())
+        if response.status_code == 204:
+            return {}
+        else:
+            return response.json()
 
     def user_data(self):
         user_profile_api_endpoint = "{}/me".format(self.SPOTIFY_API_URL)
-        profile_data = self.requestHandler(user_profile_api_endpoint)
+        profile_data = self.getRequest(user_profile_api_endpoint)
 
         playlist_api_endpoint = "{}/playlists".format(profile_data["href"])
-        playlist_data = self.requestHandler(playlist_api_endpoint)
+        playlist_data = self.getRequest(playlist_api_endpoint)
         display_arr = [profile_data] + playlist_data["items"]
         return display_arr
     
     def recentlyPlayedData(self, num_entries=50):
         recently_played_api_endpoint = "{}/me/player/recently-played".format(self.SPOTIFY_API_URL)
-        recently_played_data = self.requestHandler(recently_played_api_endpoint, params={'limit': num_entries})
+        recently_played_data = self.getRequest(recently_played_api_endpoint, params={'limit': num_entries})
         df_played = pd.DataFrame(recently_played_data['items'])
         df_played['name'] = df_played['track'].apply(lambda x: x['name'])
         df_played['artist'] = df_played['track'].apply(lambda x: x['artists'][0]['name'])
@@ -131,7 +159,7 @@ class Spotify_API:
 
     def getAudioFeatures(self, df_played):
         audio_features_api_endpoint = "{}/audio-features".format(self.SPOTIFY_API_URL)
-        audio_features = self.requestHandler(audio_features_api_endpoint, params={'ids': ','.join(df_played['song_id'].to_list())})
+        audio_features = self.getRequest(audio_features_api_endpoint, params={'ids': ','.join(df_played['song_id'].to_list())})
         df_audio_features = pd.DataFrame(audio_features)
         df_audio_features = pd.concat([df_audio_features['audio_features'].apply(pd.Series)], axis=1)
         df_played = df_played.drop(columns=['duration_ms'])
@@ -149,6 +177,47 @@ class Spotify_API:
         df.set_index('played_at', inplace=True)
         df.index = df.index.tz_localize(None)
         return df
+
+    def currentlyPlaying(self):
+        now_playing_data = self.getRequest("{}/me/player/currently-playing".format(self.SPOTIFY_API_URL))
+        timestamp = now_playing_data['timestamp']
+        progress_ms = now_playing_data['progress_ms']
+        album = now_playing_data['item']['album']['name']
+        duration_ms = now_playing_data['item']['duration_ms']
+        song = now_playing_data['item']['name']
+        artist = now_playing_data['item']['artists'][0]['name']
+        artist_id = now_playing_data['item']['artists'][0]['id']
+        is_playing = now_playing_data['is_playing']
+        song_id = now_playing_data['item']['id']
+
+        class CurrentSong:
+            def __init__(self, song, song_id, artist, artist_id, timestamp, progress_ms, album, duration_ms, is_playing):
+                self.song = song
+                self.song_id = song_id
+                self.artist = artist
+                self.artist_id = artist_id
+                self.timestamp = timestamp
+                self.progress_ms = progress_ms
+                self.album = album
+                self.duration_ms = duration_ms
+                self.is_playing = is_playing
+            def __str__(self):
+                return f"CurrentSong({self.song}, {self.song_id}, {self.artist}, {self.artist_id}, {self.timestamp}, {self.progress_ms}, {self.album}, {self.duration_ms}, {self.is_playing})"
+                
+        current_song = CurrentSong(song, song_id, artist, artist_id, timestamp, progress_ms, album, duration_ms, is_playing)
+        return current_song
+
+    def playSong(self, song_id):
+        response = self.postRequest("{}/me/player/play".format(self.SPOTIFY_API_URL), data={'uris': ['spotify:track:' + song_id]})
+        if 'error' in response and response['error']['status'] == 404:
+            if 'message' in response['error'] and response['error']['message'] == 'Player command failed: No active device found':  
+                return 'No active device found'
+        return 'Song played successfully'
+        
+    def playRandomSong(self):
+        df = get_dataframe_from_query("SELECT * from songs;")
+        next_song_id = df['song_id'].sample().iloc[0]
+        return self.playSong(next_song_id)
     
     def getRecentlyPlayedWithFeatures(self, num_entries=50):
         # Get stored data from database
@@ -198,26 +267,6 @@ class Spotify_API:
         df_combined.reset_index(drop=True, inplace=True)
         return df_combined
 
-    def refreshAccessToken(self):
-        if current_user.spotify_refresh_token is None:
-            raise ValueError("Refresh token is not set.")
-        post_data = {
-            "grant_type": "refresh_token",
-            "refresh_token": current_user.spotify_refresh_token,
-            "client_id": self.CLIENT_ID,
-            "client_secret": self.CLIENT_SECRET
-        }
-        post_request = requests.post(self.SPOTIFY_TOKEN_URL, data=post_data)
-        response_data = json.loads(post_request.text)
-
-        self.access_token = response_data["access_token"]
-        self.token_type = response_data["token_type"]
-        self.expires_in = response_data["expires_in"]
-        
-        current_user.spotify_authorized = True
-        current_user.spotify_token = response_data["access_token"]
-        self.db.session.commit()
-
     def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
 
         @app.route("/authorize_spotify")
@@ -260,5 +309,10 @@ class Spotify_API:
         @spotify_and_fitbit_authorized_required
         def recentlyPlayedWithFeatures():
             return self.getRecentlyPlayedWithFeatures().to_dict(orient='records')
+        
+        @app.route('/playRandomSong', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def playRandomSong():
+            return self.playRandomSong()
             
         return app

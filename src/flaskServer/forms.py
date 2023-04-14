@@ -38,7 +38,6 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
     
     def validate(self, extra_validators=None):
-        print("LoginForm: ", self.guest_login.data, super().validate())
         if not super().validate():
             return False
         

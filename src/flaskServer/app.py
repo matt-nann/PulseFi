@@ -125,7 +125,6 @@ def create_app():
             return redirect(url_for('home'))
         form = LoginForm()
         guest_login_clicked = False
-        print('form.validate_on_submit()', guest_login_clicked)
         if form.validate_on_submit():
             if request.form.get('guest_login'):
                 guest_login_clicked = True

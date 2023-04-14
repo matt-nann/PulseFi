@@ -93,7 +93,6 @@ class Fitbit_API:
         date_list = []
         df_list = []
         allDates = pd.date_range(start=startTime, end = endTime)
-        print("heartRateData allDates: ", allDates, " startTime: ", startTime, " endTime: ", endTime)
         for oneDate in allDates:
             oneDate = oneDate.date().strftime("%Y-%m-%d")
             try:
