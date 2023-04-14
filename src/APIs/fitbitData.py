@@ -84,15 +84,16 @@ class Fitbit_API:
         # endTime = datetime.strptime('2022-10-1', '%Y-%m-%d')
         latest_datetime = self.db.session.query(HeartRate.datetime).filter_by(user_id=current_user.id).order_by(HeartRate.datetime.desc()).first()
         if latest_datetime:
-            startTime = latest_datetime[0] + timedelta(days=1)
+            startTime = latest_datetime[0]
         else:
             startTime = datetime.strptime('2023-04-01', '%Y-%m-%d')
         # startTime = datetime.now().date() - timedelta(days=1)
         # startTime = startTime.strftime("%Y-%m-%d")
-        endTime = datetime.now().date().strftime("%Y-%m-%d")
+        endTime = datetime.now().date().strftime("%Y-%m-%d") + ' 23:59:59'
         date_list = []
         df_list = []
         allDates = pd.date_range(start=startTime, end = endTime)
+        print("heartRateData allDates: ", allDates, " startTime: ", startTime, " endTime: ", endTime)
         for oneDate in allDates:
             oneDate = oneDate.date().strftime("%Y-%m-%d")
             try:

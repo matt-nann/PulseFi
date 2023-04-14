@@ -195,6 +195,7 @@ class Spotify_API:
         df_combined = pd.concat([stored_data_df, df_new_songs], axis=0)
         df_combined = df_combined.sort_values(by=['played_at'], ascending=False)
         df_combined['played_at'] = df_combined.index
+        df_combined.reset_index(drop=True, inplace=True)
         return df_combined
 
     def refreshAccessToken(self):
