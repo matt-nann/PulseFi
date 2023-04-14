@@ -1,11 +1,13 @@
 import json
 import requests
 import pandas as pd 
+from datetime import datetime, timezone
 from flask import redirect, url_for, request
 from flask_login import current_user
 from urllib.parse import quote
-
+from src.flaskServer.models import MusicHistory, Song   
 from src import getSecret, isRunningInCloud, CLOUD_URL, FLASK_PORT
+from src.sql import get_dataframe_from_query
 
 class Spotify_API:
     FLASK_AUTHORIZATION = '/authorize_spotify'
@@ -98,7 +100,7 @@ class Spotify_API:
         data = json.loads(response.text)
         if 'error' in data and data['error']['status'] == 401:
             if 'message' in data['error'] and data['error']['message'] == "The access token expired":   
-                self.refreshToken()
+                self.refreshAccessToken()
                 return self.requestHandler(endpoint, params=params)
         else:
             return data
@@ -120,12 +122,11 @@ class Spotify_API:
         df_played['artist'] = df_played['track'].apply(lambda x: x['artists'][0]['name'])
         df_played['song_id'] = df_played['track'].apply(lambda x: x['id']) 
         df_played['duration_ms'] = df_played['track'].apply(lambda x: x['duration_ms'])
-        df_played['songImage'] = df_played['track'].apply(lambda x: x['album']['images'][0]['url'])
+        df_played['song_image'] = df_played['track'].apply(lambda x: x['album']['images'][0]['url'])
         df_played = df_played.drop(columns=['track', 'context'])
         df_played['played_at'] = pd.to_datetime(df_played['played_at'])
         # HACKY convert to EST
         df_played['played_at'] = df_played['played_at'] - pd.Timedelta(hours=4)
-
         return df_played
 
     def getAudioFeatures(self, df_played):
@@ -133,14 +134,69 @@ class Spotify_API:
         audio_features = self.requestHandler(audio_features_api_endpoint, params={'ids': ','.join(df_played['song_id'].to_list())})
         df_audio_features = pd.DataFrame(audio_features)
         df_audio_features = pd.concat([df_audio_features['audio_features'].apply(pd.Series)], axis=1)
+        df_played = df_played.drop(columns=['duration_ms'])
         df_played = pd.concat([df_played, df_audio_features], axis=1)
+        df_played = df_played.drop(columns=['id', 'uri', 'track_href', 'analysis_url','type'])
+        df_played['user_id'] = current_user.id
         return df_played
+    
+    def get_music_history_df(self, current_user):
+        df = get_dataframe_from_query("SELECT music_history.*, songs.* FROM music_history JOIN songs ON music_history.song_id = songs.song_id WHERE user_id = {}".format(current_user.id))
+        # there are two song_id columns and even with df = df.drop_duplicates(subset=['song_id'], keep='first'), the remaining song_id column would be a pandas series
+        temp = df['song_id'].iloc[:,0]
+        df = df.drop(columns=['song_id'])
+        df.insert(0, 'song_id', temp)
+        df.set_index('played_at', inplace=True)
+        df.index = df.index.tz_localize(None)
+        return df
     
     def getRecentlyPlayedWithFeatures(self, num_entries=50):
-        df_played = self.recentlyPlayedData(num_entries)
-        df_played = self.getAudioFeatures(df_played)
-        return df_played
-    
+        # Get stored data from database
+        stored_data_df = self.get_music_history_df(current_user)
+
+        # Get new data from API
+        new_data_df = self.recentlyPlayedData(num_entries)
+        new_song_ids = new_data_df['song_id'].unique()
+
+        new_data_df = self.getAudioFeatures(new_data_df)
+        new_data_df.set_index('played_at', inplace=True)
+        new_data_df.index = new_data_df.index.tz_localize(None)
+
+        # Check which song IDs are not in the Song table and insert them
+        existing_songs = Song.query.filter(Song.song_id.in_(new_song_ids)).all()
+        existing_song_ids = [song.song_id for song in existing_songs]
+        new_song_ids = list(set(new_song_ids) - set(existing_song_ids))
+        new_songs = []
+        newlyAddedSongsIds = []
+        if new_song_ids:
+            for index, row in new_data_df.iterrows():
+                if row['song_id'] in new_song_ids and row['song_id'] not in newlyAddedSongsIds:
+                    new_song = Song(row)
+                    newlyAddedSongsIds.append(new_song.song_id)
+                    new_songs.append(new_song)
+            self.db.session.add_all(new_songs)
+
+        # Find the most recently played song, and insert all newly played songs after it
+        latest_played_at = self.db.session.query(self.db.func.max(MusicHistory.played_at)).filter_by(user_id=current_user.id).scalar()
+        if latest_played_at:
+            df_new_songs = new_data_df[new_data_df.index > latest_played_at]
+        else:
+            df_new_songs = new_data_df.copy()
+
+        new_History = []
+        for index, row in df_new_songs.iterrows():
+            song_id = row['song_id']
+            played_at = index
+            playedSong = MusicHistory(song_id=song_id, played_at=played_at, user_id=current_user.id)
+            new_History.append(playedSong)
+        self.db.session.add_all(new_History)
+        self.db.session.commit()
+
+        df_combined = pd.concat([stored_data_df, df_new_songs], axis=0)
+        df_combined = df_combined.sort_values(by=['played_at'], ascending=False)
+        df_combined['played_at'] = df_combined.index
+        return df_combined
+
     def refreshAccessToken(self):
         if current_user.spotify_refresh_token is None:
             raise ValueError("Refresh token is not set.")
@@ -176,8 +232,6 @@ class Spotify_API:
             post_request = requests.post(self.SPOTIFY_TOKEN_URL, data=code_payload)
 
             response_data = json.loads(post_request.text)
-            access_token = response_data["access_token"]
-            refresh_token = response_data["refresh_token"]
             token_type = response_data["token_type"]
             expires_in = response_data["expires_in"]    
             
@@ -198,7 +252,8 @@ class Spotify_API:
         @app.route('/recentlyPlayed', methods=['GET'])
         @spotify_and_fitbit_authorized_required
         def recentlyPlayed():
-            return self.recentlyPlayedData().to_dict(orient='records')
+            # return self.get_music_history_df(current_user).to_html()
+            return self.getRecentlyPlayedWithFeatures().to_html()
         
         @app.route('/recentlyPlayedWithFeatures', methods=['GET'])
         @spotify_and_fitbit_authorized_required

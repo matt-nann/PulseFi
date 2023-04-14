@@ -19,7 +19,7 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
             # print(row)
             start_time = row['played_at']
             # print(start_time, type(start_time), row['duration_ms'], type(row['duration_ms']))
-            end_time =  pd.to_datetime(start_time) + pd.Timedelta(milliseconds=row['duration_ms'][0])
+            end_time =  pd.to_datetime(start_time) + pd.Timedelta(milliseconds=row['duration_ms'])
             y_value = row['tempo']
             traces.append(go.Scatter(
                 x=[start_time, end_time],

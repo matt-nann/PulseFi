@@ -8,3 +8,7 @@ __pycache__/
 .log
 error.log
 **/.DS_Store
+**/*.secrets
+**/*.pem
+**/*.key
+/migrations

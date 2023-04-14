@@ -7,14 +7,16 @@ from functools import wraps
 from logging import Formatter, FileHandler
 import requests
 import pandas as pd
+from sqlalchemy import create_engine
 
-from .forms import *
-from .models import User, db
 from src import getSecret, isRunningInCloud, baseUrl
 from src.APIs.fitbitData import Fitbit_API
 from src.APIs.spotifyData import Spotify_API
 from src.APIs.ouraData import Oura_API
 from src.dashboard import add_dash_routes
+from src.flaskServer.config import Config
+from src.flaskServer.forms import *
+from src.flaskServer.models import User, db
 
 def create_app():
 
@@ -26,14 +28,8 @@ def create_app():
     # Grabs the folder where the script runs.
     basedir = os.path.abspath(os.path.dirname(__file__))
 
-    # Enable debug mode.
-    app.config.DEBUG = True
-    # Secret key for session management. You can generate random strings here:
-    # https://randomkeygen.com/
-    app.config['SECRET_KEY'] = "o'lEd~n48G[3&@XVF2*]u1`VPF7P%I%,:OA@wuI`.5|%$4neB>h{q=S1N<R5AKL"
-    # Connect to the database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.db')
-
+    app.config.from_object(Config)
+    
     login_manager = LoginManager()
     login_manager.init_app(app)
 
@@ -41,6 +37,9 @@ def create_app():
     migrate = Migrate(app, db)
     with app.app_context():
         db.create_all()
+        # engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
+        # print('engine created', engine)
+        # db.session.configure(bind=engine)
 
     def resetAPI_Auth():
         if current_user and current_user.is_authenticated:
@@ -155,7 +154,7 @@ def create_app():
     
 
     # ============= adding in fitbit API data handler  =============
-    fitbit_API = Fitbit_API()
+    fitbit_API = Fitbit_API(db)
     setattr(app, 'fitbit_API', fitbit_API)
     fitbit_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= spotify API data handler ===========
