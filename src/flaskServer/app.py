@@ -5,9 +5,6 @@ from flask_migrate import Migrate
 import logging
 from functools import wraps
 from logging import Formatter, FileHandler
-import requests
-import pandas as pd
-from sqlalchemy import create_engine
 
 from src import getSecret, isRunningInCloud, baseUrl
 from src.APIs.fitbitData import Fitbit_API
