@@ -2,16 +2,74 @@ import sys
 import traceback
 import datetime
 from datetime import datetime, timedelta
+from contextlib import contextmanager
 
 import pandas as pd 
 from fitbit.api import Fitbit
-from fitbit.exceptions import HTTPTooManyRequests
+from fitbit.exceptions import HTTPTooManyRequests, HTTPUnauthorized
 from flask import redirect, url_for, request, current_app
 from flask_login import current_user
-from oauthlib.oauth2.rfc6749.errors import MismatchingStateError, MissingTokenError
+from oauthlib.oauth2.rfc6749.errors import InvalidGrantError, MismatchingStateError, MissingTokenError
 
 from src import getSecret, isRunningInCloud, FLASK_PORT, CLOUD_URL
 from src.flaskServer.models import HeartRate
+
+def refresh_cb(token_dict):
+    print("Token refreshed: ", token_dict)
+
+class FitbitClient(object):
+    client_id = getSecret('FITBIT_CLIENT_ID')
+    client_secret = getSecret('FITBIT_CLIENT_SECRET')
+    def __init__(self, API):
+        self.db = API.db
+        self._TokenRefreshed = {}
+    def __enter__(self):
+        self.fitbit = Fitbit(self.client_id, self.client_secret, oauth2=True, 
+                            refresh_cb=refresh_cb,
+                            access_token=current_user.fitbit_access_token, refresh_token=current_user.fitbit_refresh_token)
+        return self
+    def __exit__(self, exception_type, exception_value, traceback):
+        ...
+    def updateClient(self):
+        self.fitbit = Fitbit(self.client_id, self.client_secret, oauth2=True, access_token=current_user.fitbit_access_token, refresh_token=current_user.fitbit_refresh_token)
+    def refreshToken(self):
+        try:
+            # print("Refreshing token, old access token: ", self.fitbit.client.session.token['access_token'])
+            try:
+                self.fitbit.client.refresh_token()
+                current_user.fitbit_access_token = self.fitbit.client.session.token['access_token']
+                self.db.session.commit()
+            except InvalidGrantError:
+                print("Invalid grant error need to reauthorize")
+                current_user.fitbit_authorized = False
+                current_user.fitbit_access_token = None
+                current_user.fitbit_refresh_token = None
+                self.db.session.commit()
+        except Exception as e:
+            print("Error refreshing token: ", e)
+            raise
+    def query(self, function, resource, *args, **kwargs):
+        try:
+            return getattr(self.fitbit, function)(resource, *args, **kwargs)
+        except Exception as e:
+            print("Error retrieving auth client: ", e)
+            print("Error type: ", type(e))
+            if isinstance(e, InvalidGrantError):
+                current_user.fitbit_authorized = False
+                current_user.fitbit_access_token = None
+                current_user.fitbit_refresh_token = None
+                self.db.session.commit()
+            if isinstance(e, HTTPTooManyRequests):
+                print("Too many requests for fitbit data, retrying in ", int(e.retry_after_secs) / 60 , " minutes")
+            if isinstance(e, HTTPUnauthorized):
+                print("Unauthorized for fitbit data, refreshing token")
+                self.refreshToken()
+                if not current_user.fitbit_authorized:
+                    return pd.DataFrame()
+                self.updateClient()
+                return getattr(self.fitbit, function)(resource, *args, **kwargs)
+            print("Error retrieving auth client: ", e)
+            raise
 
 class Fitbit_API:
     """
@@ -55,9 +113,6 @@ class Fitbit_API:
             url, _ = self.fitbit.client.authorize_token_url()
             return redirect(url)
         
-    def retrieveAuthClient(self):
-        return Fitbit(self.client_id,self.client_secret,oauth2=True,access_token=current_user.fitbit_access_token,refresh_token=current_user.fitbit_refresh_token)
-
     def saveHeartData(self, df_heartRate):
         latest_datetime = self.db.session.query(HeartRate.datetime).filter_by(user_id=current_user.id).order_by(HeartRate.datetime.desc()).first()
         if latest_datetime:
@@ -95,11 +150,8 @@ class Fitbit_API:
         allDates = pd.date_range(start=startTime, end = endTime)
         for oneDate in allDates:
             oneDate = oneDate.date().strftime("%Y-%m-%d")
-            try:
-                oneDayData = self.retrieveAuthClient().intraday_time_series('activities/heart', base_date=oneDate, detail_level='1sec')
-            except HTTPTooManyRequests as e:
-                print("Too many requests for fitbit data, retrying in ", int(e.retry_after_secs) / 60 , " minutes")
-                break
+            with FitbitClient(self) as fitbit:
+                oneDayData = fitbit.query('intraday_time_series', resource='activities/heart', base_date=oneDate, detail_level='1sec')
             df = pd.DataFrame(oneDayData['activities-heart-intraday']['dataset'])
             date_list.append(oneDate)
             df_list.append(df)
