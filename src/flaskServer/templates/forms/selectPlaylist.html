@@ -1,0 +1,50 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Select Playlists{% endblock %}
+{% block content %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home.css') }}">   
+    <form method="post" class="form">
+        {{ form.hidden_tag() }}
+        <div class="listbox-area">
+            <span id="ss_elem" class="listbox-label">Spotify Playlists:</span>
+            <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
+            {% for playlist in playlists %}
+                <li id="ss_elem_{{ playlist.name }}" role="option">
+                <input type="checkbox" name="selected_playlists" value=
+                    "{{ 
+                        {'playlist_id':playlist.id, 
+                        'playlist_name':playlist.name,
+                        'playlist_image':(playlist.image_url if playlist.image_url else ''),
+                        }
+                    }}" style="label" {% if playlist.selected %}checked{% endif %}/>
+                    <!-- adds the checked attribute if a playlist has been selected before -->
+                {% if playlist['image_url'] %}
+                    <img src="{{ playlist.image_url }}" alt="{{ playlist.name }} icon" style="width:50px;height:50px;">
+                {% else %}
+                    <img src="{{ url_for('static', filename='img/defaultSpotifyPlaylist.png') }}" alt="Spotify icon" style="width:50px;height:50px;">
+                {% endif %}
+                {{ playlist.name }}
+                <span class="checkmark"></span>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
+    </form>
+    {% for field, errors in form.errors.items() %}
+    <div class="alert alert-danger">
+        {% for error in errors %}
+        <span>{{ error }}</span><br>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <script>
+        var listItems = document.querySelectorAll('#ss_elem_list li');
+        listItems.forEach(function(item) {
+          var checkbox = item.querySelector('input[type="checkbox"]');
+          item.addEventListener('click', function() {
+            checkbox.checked = !checkbox.checked;
+            item.classList.toggle('checked');
+          });
+        });
+      </script>
+{% endblock %}

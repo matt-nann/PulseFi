@@ -52,13 +52,13 @@ class FitbitClient(object):
         try:
             return getattr(self.fitbit, function)(resource, *args, **kwargs)
         except Exception as e:
-            print("Error retrieving auth client: ", e)
-            print("Error type: ", type(e))
+            print("Error retrieving auth client: ", e, " type: ", type(e))
             if isinstance(e, InvalidGrantError):
                 current_user.fitbit_authorized = False
                 current_user.fitbit_access_token = None
                 current_user.fitbit_refresh_token = None
                 self.db.session.commit()
+                return pd.DataFrame()
             if isinstance(e, HTTPTooManyRequests):
                 print("Too many requests for fitbit data, retrying in ", int(e.retry_after_secs) / 60 , " minutes")
             if isinstance(e, HTTPUnauthorized):

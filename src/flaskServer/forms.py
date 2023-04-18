@@ -1,5 +1,5 @@
 from flask_wtf import Form, FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField, FieldList, FormField
 from wtforms.validators import DataRequired, EqualTo, Length, ValidationError
 from .models import User
 
@@ -55,3 +55,15 @@ class ForgotForm(FlaskForm):
     email = StringField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
+
+class PlaylistForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    id = StringField('Id')
+
+class SelectPlaylistsForm(FlaskForm):
+    playlists = FieldList(FormField(PlaylistForm), min_entries=1)
+    submit = SubmitField('Submit')
+
+    def validate(self, extra_validators=None):
+        print('SelectPlaylistsForm.validate()', self.playlists.data)
+        return super().validate()

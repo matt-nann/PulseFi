@@ -5,15 +5,18 @@ from flask_migrate import Migrate
 import logging
 from functools import wraps
 from logging import Formatter, FileHandler
+import json
+import ast
 
-from src import getSecret, isRunningInCloud, baseUrl
+
+from src import getSecret, isRunningInCloud, baseUrl, ModesTypes 
 from src.APIs.fitbitData import Fitbit_API
 from src.APIs.spotifyData import Spotify_API
 from src.APIs.ouraData import Oura_API
 from src.dashboard import add_dash_routes
 from src.flaskServer.config import Config
 from src.flaskServer.forms import *
-from src.flaskServer.models import User, db
+from src.flaskServer.models import User, db, PlaylistsForMode, Modes, RunningModes, Playlist
 
 def create_app():
 
@@ -31,6 +34,12 @@ def create_app():
         # engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
         # print('engine created', engine)
         # db.session.configure(bind=engine)
+
+        for mode in ModesTypes:
+            modeName = mode.name; modeId = mode.value
+            if not Modes.query.filter_by(mode_name=modeName).first():
+                db.session.add(Modes(modeId, modeName))
+                db.session.commit()
 
     def resetAPI_Auth():
         if current_user and current_user.is_authenticated:
@@ -75,10 +84,6 @@ def create_app():
         
         return decorated_view
 
-    @app.route('/')
-    def home():
-        return render_template('pages/home.html')
-
     # TODO remove me
     @app.route('/checkSecrets',)
     def checkSecrets():
@@ -88,37 +93,7 @@ def create_app():
     @login_required()
     def about():
         return render_template('pages/about.html')
-    
-    # @app.route('/login', methods=['GET', 'POST'])
-    # def login():
-    #     if current_user.is_authenticated:
-    #         return redirect(url_for('home'))
-    #     form = LoginForm()
-    #     if form.validate_on_submit():
-    #         if 'guest_login' in request.form:
-    #             # Authenticate the guest account
-    #             guest_username = getSecret('GUEST_USERNAME')
-    #             guest_password = getSecret('GUEST_PASSWORD')
-    #             guest_user = User.query.filter_by(username=guest_username).first()
-    #             if guest_user is not None and guest_user.check_password(guest_password):
-    #                 login_user(guest_user)
-    #                 current_user.fitbit_authorized = True
-    #                 current_user.spotify_authorized = True
-    #                 db.session.commit()
-    #                 return redirect(url_for('home'))
-    #             else:
-    #                 flash('Invalid guest account credentials.', 'danger')
-    #         else:
-    #             # Authenticate the user's credentials
-    #             user = User.query.filter_by(username=form.username.data).first()
-    #             if user is not None and user.check_password(form.password.data):
-    #                 login_user(user, remember=True)
-    #                 resetAPI_Auth()  # replace with your function to reset the API authentication
-    #                 return redirect(url_for('home'))
-    #             else:
-    #                 flash('Invalid username or password.', 'danger')
-    #     return render_template('forms/login.html', title='Login', form=form)
-    
+   
     @app.route('/login', methods=['GET', 'POST'])
     def login():
         if current_user.is_authenticated:
@@ -196,6 +171,53 @@ def create_app():
     oura_API.add_routes(app, db)
     # ============= dash graphs ===========
     dashApp = add_dash_routes(app, db, spotify_and_fitbit_authorized_required)
+
+    @app.route('/')
+    def home():
+        if current_user.spotify_authorized:
+            playlists = spotify_API.userPlaylists()
+            # import json
+            # pretty
+            # print(json.dumps(playlists[0], indent=4, sort_keys=True))
+        else:
+            playlists = []
+        return render_template('pages/home.html', playlists=playlists)
+    
+    @app.route('/selectPlaylist', methods=['GET', 'POST'])
+    @spotify_and_fitbit_authorized_required
+    def selectPlaylist():
+        DEBUG_SLEEP_MODE = 1
+        form = SelectPlaylistsForm()
+        usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id).all()
+        usedPlayIds = [playlist.playlist_id for playlist in usedPlaylists]
+        playlists = spotify_API.userPlaylists()
+        if usedPlayIds:
+            usedPlaylists = Playlist.query.filter(Playlist.playlist_id.in_(usedPlayIds)).filter_by( user_id=current_user.id).all()
+        new_plays = []
+        if request.method == 'POST':
+            sql_addingPlaylists = []; sql_newPlays = []
+            new_plays = request.form.getlist('selected_playlists') # must match the name of input checkbox that is toggle as the user selects playlists
+            usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id).all()
+            new_plays = [ast.literal_eval(p.strip()) for p in new_plays] # in html a dictionary is built as a string and must be converted
+            new_play_ids = [p['playlist_id'] for p in new_plays]
+            sql_play_ids = [p.playlist_id for p in Playlist.query.filter_by(user_id=current_user.id).all()]
+            for playlist_dict in new_plays:
+                if playlist_dict['playlist_id'] not in sql_play_ids:
+                    sql_addingPlaylists.append(Playlist(user_id=current_user.id, playlist_id=playlist_dict['playlist_id'], playlist_name=playlist_dict['playlist_name'], playlist_image_url=playlist_dict['playlist_image']))
+                if playlist_dict['playlist_id'] not in usedPlayIds:
+                    sql_newPlays.append(PlaylistsForMode(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id, playlist_id=playlist_dict['playlist_id']))
+            for playlist in usedPlaylists:
+                if playlist.playlist_id not in new_play_ids:
+                    db.session.delete(playlist)
+            db.session.add_all(sql_addingPlaylists)
+            db.session.add_all(sql_newPlays)
+            db.session.commit()
+        for playlist in playlists:
+            if request.method == 'POST' and playlist['id'] in new_play_ids:
+                playlist['selected'] = True
+            elif request.method == 'GET' and playlist['id'] in usedPlayIds:
+                playlist['selected'] = True
+        return render_template('forms/selectPlaylist.html', form=form, playlists=playlists)
 
     @app.route('/graph', methods=['GET'])
     @spotify_and_fitbit_authorized_required

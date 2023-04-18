@@ -10,9 +10,9 @@
     <li><a href="#" onclick="document.getElementById('user_authorize_fitbit').submit();return false;">Authorize Fitbit</a></li>
     <form id="user_authorize_fitbit" method="get" class="form" action="{{ url_for('user_authorize_fitbit') }}"></form>
     {% endif %}
-    {% if current_user.spotify_authorized and current_user.fitbit_authorized %}
+    <!-- {% if current_user.spotify_authorized and current_user.fitbit_authorized %}
       <iframe src="{{ url_for('basicHeartRateAndTempo') }}" width="100%" height="500px"></iframe>
-    {% endif %}
+    {% endif %} -->
   {% else %}
     <div class="page-header">
       <h1>Sticky footer with fixed navbar</h1>

@@ -89,3 +89,46 @@ class HeartRate(db.Model):
         self.user_id = user_id
         self.bpm = bpm
         self.datetime = datetime
+
+class Modes(db.Model):
+    __tablename__ = 'modes'
+    mode_id = db.Column(db.Integer, primary_key=True)
+    mode_name = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, mode_id, mode_name):
+        self.mode_id = mode_id
+        self.mode_name = mode_name
+
+class RunningModes(db.Model):
+    __tablename__ = 'running_modes'
+    user_id = db.Column(db.Integer, primary_key=True)
+    # datetime = db.Column(db.DateTime, primary_key=True)
+    mode_id = db.Column(db.Integer, nullable=False)
+
+    def __init__(self, user_id, mode_id):
+        self.user_id = user_id
+        self.mode_id = mode_id    
+
+class PlaylistsForMode(db.Model):
+    __tablename__ = 'playlists_for_mode'
+    mode_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
+    playlist_id = db.Column(db.String(50), primary_key=True)
+
+    def __init__(self, mode_id, user_id, playlist_id):
+        self.mode_id = mode_id
+        self.user_id = user_id
+        self.playlist_id = playlist_id
+
+class Playlist(db.Model):
+    __tablename__ = 'playlists'
+    user_id = db.Column(db.Integer, primary_key=True)
+    playlist_id = db.Column(db.String(50), primary_key=True)
+    playlist_name = db.Column(db.String(50), nullable=False)
+    playlist_image_url = db.Column(db.String(200), nullable=False)
+
+    def __init__(self, user_id, playlist_id, playlist_name, playlist_image_url):
+        self.user_id = user_id
+        self.playlist_id = playlist_id
+        self.playlist_name = playlist_name
+        self.playlist_image_url = playlist_image_url

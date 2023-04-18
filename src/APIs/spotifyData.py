@@ -142,6 +142,22 @@ class Spotify_API:
         display_arr = [profile_data] + playlist_data["items"]
         return display_arr
     
+    def userPlaylists(self):
+        user_profile_api_endpoint = "{}/me".format(self.SPOTIFY_API_URL)
+        profile_data = self.getRequest(user_profile_api_endpoint)
+        playlist_api_endpoint = "{}/playlists".format(profile_data["href"])
+        _playlist_data = self.getRequest(playlist_api_endpoint)
+        _playlist_data["items"]
+        playlist_Data = []
+        for playlist in _playlist_data["items"]:
+            playlist_Data.append({
+                "name": playlist["name"],
+                "id": playlist["id"],
+                "image_url": playlist["images"][0]["url"] if len(playlist["images"]) > 0 else "",
+                "selected": False
+            })
+        return playlist_Data
+    
     def recentlyPlayedData(self, num_entries=50):
         recently_played_api_endpoint = "{}/me/player/recently-played".format(self.SPOTIFY_API_URL)
         recently_played_data = self.getRequest(recently_played_api_endpoint, params={'limit': num_entries})
@@ -161,11 +177,18 @@ class Spotify_API:
         audio_features_api_endpoint = "{}/audio-features".format(self.SPOTIFY_API_URL)
         audio_features = self.getRequest(audio_features_api_endpoint, params={'ids': ','.join(df_played['song_id'].to_list())})
         df_audio_features = pd.DataFrame(audio_features)
+        valid_songs = df_audio_features['audio_features'].apply(lambda x: x is not None)
+        df_audio_features = df_audio_features[valid_songs]
+        valid_song_ids = df_audio_features['audio_features'].apply(lambda x: x['id']).to_list()
+        all_song_ids = df_played['song_id'].to_list()
         df_audio_features = pd.concat([df_audio_features['audio_features'].apply(pd.Series)], axis=1)
         df_played = df_played.drop(columns=['duration_ms'])
         df_played = pd.concat([df_played, df_audio_features], axis=1)
         df_played = df_played.drop(columns=['id', 'uri', 'track_href', 'analysis_url','type'])
         df_played['user_id'] = current_user.id
+        # TODO if a song doesn't have audio-features the current solution is to just drop it from the music history
+        df_played = df_played[df_played['song_id'].isin(valid_song_ids)]
+        # df_played = df_played.where(pd.notnull(df_played), None)
         return df_played
     
     def get_music_history_df(self, current_user):
@@ -314,5 +337,15 @@ class Spotify_API:
         @spotify_and_fitbit_authorized_required
         def playRandomSong():
             return self.playRandomSong()
+        
+        @app.route('/userData', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def userData():
+            return self.user_data()
             
+        @app.route('/userPlaylists', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def userPlaylists():
+            return self.userPlaylists()
+
         return app

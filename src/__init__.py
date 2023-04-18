@@ -1,8 +1,15 @@
 import os
 from dotenv import load_dotenv
+from enum import Enum
 
 FLASK_PORT = 8080
 CLOUD_URL = 'https://pulse-fi.herokuapp.com'
+
+class ModesTypes(Enum):
+    SLEEP = 1
+    EXERCISE = 2
+    RELAX = 3
+    WORK = 4
 
 load_dotenv()
 
