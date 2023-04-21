@@ -2,12 +2,14 @@ import json
 import requests
 import pandas as pd 
 from datetime import datetime, timezone
-from flask import redirect, url_for, request
+from flask import redirect, url_for, request, make_response, jsonify
 from flask_login import current_user
 from urllib.parse import quote
-from src.flaskServer.models import MusicHistory, Song   
-from src import getSecret, isRunningInCloud, CLOUD_URL, FLASK_PORT
+import random
+
+from src import getSecret, isRunningInCloud, CLOUD_URL, ModesTypes_Values
 from src.sql import get_dataframe_from_query
+from src.flaskServer.models import PlaylistsForMode, Modes, Playlist, MusicHistory, Song   
 
 class Spotify_API:
     FLASK_AUTHORIZATION = '/authorize_spotify'
@@ -289,6 +291,12 @@ class Spotify_API:
         df_combined['played_at'] = df_combined.index
         df_combined.reset_index(drop=True, inplace=True)
         return df_combined
+    
+    def getPlaylistSongIDs(self, playlist_id):
+        playlist_api_endpoint = "{}/playlists/{}/tracks".format(self.SPOTIFY_API_URL, playlist_id)
+        playlist_data = self.getRequest(playlist_api_endpoint)
+        song_ids = [item['track']['id'] for item in playlist_data['items']]
+        return song_ids
 
     def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
 
@@ -321,6 +329,29 @@ class Spotify_API:
             if page:
                 return page
             return redirect(url_for('home'))
+        
+        @app.route('/startMode', methods=['POST'])
+        @spotify_and_fitbit_authorized_required
+        def startMode():
+            mode_id = request.json.get('mode_id', None)
+            if mode_id is None or int(mode_id) not in ModesTypes_Values:
+                return make_response(jsonify({'error': 'No mode_id provided', 'text': 'No mode_id provided'}), 400)
+            usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=mode_id, user_id=current_user.id).all()
+            if usedPlaylists:
+                song_ids = []
+                for playlist in usedPlaylists:
+                    _ = self.getPlaylistSongIDs(playlist.playlist_id)
+                    if _:
+                        song_ids.extend(_)
+                if song_ids:
+                    song_id = random.choice(song_ids)
+                    result = self.playSong(song_id)
+                    print(result)
+                    return result
+                else:
+                    return make_response(jsonify({'error': 'No songs found in playlists for this mode'}), 400)
+            else:
+                return make_response(jsonify({'error': 'No playlists found for this mode'}), 400)
 
         @app.route('/recentlyPlayed', methods=['GET'])
         @spotify_and_fitbit_authorized_required
@@ -333,7 +364,7 @@ class Spotify_API:
         def recentlyPlayedWithFeatures():
             return self.getRecentlyPlayedWithFeatures().to_dict(orient='records')
         
-        @app.route('/playRandomSong', methods=['GET'])
+        @app.route('/playRandomSong', methods=['POST'])
         @spotify_and_fitbit_authorized_required
         def playRandomSong():
             return self.playRandomSong()

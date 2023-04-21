@@ -10,6 +10,7 @@ class ModesTypes(Enum):
     EXERCISE = 2
     RELAX = 3
     WORK = 4
+ModesTypes_Values = [int(mode.value) for mode in ModesTypes]
 
 load_dotenv()
 

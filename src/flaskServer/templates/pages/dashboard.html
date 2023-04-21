@@ -11,4 +11,40 @@
         {% endwith %}
         <iframe src="{{ url_for('basicHeartRateAndTempo') }}" width="100%" height="500px"></iframe>
     </div>
+    <div class="container" style="  
+        display: flex;
+        ">
+        {% for mode in modes %}
+            <a href="#" class="btn btn-primary btn-lg btn-block" style="width: 25%" onclick="startMode('{{ mode.id}}')">{{ mode.name }}</a>
+        {% endfor %}
+    </div>
+    <script>
+        function startMode(modeId) {
+            fetch('/startMode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token() }}',
+                    'mode_id': modeId
+                },
+                body: JSON.stringify({ mode_id: modeId })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("startMode success", response)
+                    // print("startMode success")
+                    // handle success response
+                } else {
+                    console.log("startMode error", response)
+                    // print("startMode error", response)
+                    // handle error response
+                }
+            })
+            .catch(error => {
+                console.log("startMode error", error)
+                // print("startMode error", error)
+                // handle network error
+            });
+        }
+    </script>
 {% endblock %}

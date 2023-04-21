@@ -185,42 +185,6 @@ def create_app():
     def home():
         return render_template('pages/home.html')
     
-    @app.route('/selectPlaylist', methods=['GET', 'POST'])
-    @spotify_and_fitbit_authorized_required
-    def selectPlaylist():
-        DEBUG_SLEEP_MODE = 1
-        form = SelectPlaylistsForm()
-        usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id).all()
-        usedPlayIds = [playlist.playlist_id for playlist in usedPlaylists]
-        playlists = spotify_API.userPlaylists()
-        if usedPlayIds:
-            usedPlaylists = Playlist.query.filter(Playlist.playlist_id.in_(usedPlayIds)).filter_by( user_id=current_user.id).all()
-        new_plays = []
-        if request.method == 'POST':
-            sql_addingPlaylists = []; sql_newPlays = []
-            new_plays = request.form.getlist('selected_playlists') # must match the name of input checkbox that is toggle as the user selects playlists
-            usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id).all()
-            new_plays = [ast.literal_eval(p.strip()) for p in new_plays] # in html a dictionary is built as a string and must be converted
-            new_play_ids = [p['playlist_id'] for p in new_plays]
-            sql_play_ids = [p.playlist_id for p in Playlist.query.filter_by(user_id=current_user.id).all()]
-            for playlist_dict in new_plays:
-                if playlist_dict['playlist_id'] not in sql_play_ids:
-                    sql_addingPlaylists.append(Playlist(user_id=current_user.id, playlist_id=playlist_dict['playlist_id'], playlist_name=playlist_dict['playlist_name'], playlist_image_url=playlist_dict['playlist_image']))
-                if playlist_dict['playlist_id'] not in usedPlayIds:
-                    sql_newPlays.append(PlaylistsForMode(mode_id=DEBUG_SLEEP_MODE, user_id=current_user.id, playlist_id=playlist_dict['playlist_id']))
-            for playlist in usedPlaylists:
-                if playlist.playlist_id not in new_play_ids:
-                    db.session.delete(playlist)
-            db.session.add_all(sql_addingPlaylists)
-            db.session.add_all(sql_newPlays)
-            db.session.commit()
-        for playlist in playlists:
-            if request.method == 'POST' and playlist['id'] in new_play_ids:
-                playlist['selected'] = True
-            elif request.method == 'GET' and playlist['id'] in usedPlayIds:
-                playlist['selected'] = True
-        return render_template('forms/selectPlaylist.html', form=form, playlists=playlists)
-    
     @app.route('/dashboard', methods=['GET', 'POST'])
     @spotify_and_fitbit_authorized_required
     def dashboard():

@@ -67,5 +67,5 @@ class SelectPlaylistsForm(FlaskForm):
     submit = SubmitField('Submit')
 
     def validate(self, extra_validators=None):
-        print('SelectPlaylistsForm.validate()', self.playlists.data)
+        # print('SelectPlaylistsForm.validate()', self.playlists.data)
         return super().validate()
