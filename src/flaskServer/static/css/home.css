@@ -8,9 +8,10 @@ margin: 10px 0;
 }
 
 .listbox-area {
-    width: 33%;
-    display: grid;
-    grid-gap: 2em;
+    /* width: 33%;
+    height: 50%; */
+    /* display: grid; */
+    /* grid-gap: 2em; */
     /* grid-template-columns: repeat(1, 1fr); */
     padding: 20px;
     border: 1px solid #aaa;
@@ -28,7 +29,7 @@ margin: 10px 0;
   
   [role="listbox"]#ss_elem_list {
     position: relative;
-    max-height: 18em;
+    max-height: 25em;
     overflow-y: auto;
   }
   

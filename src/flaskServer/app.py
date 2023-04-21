@@ -7,7 +7,8 @@ from functools import wraps
 from logging import Formatter, FileHandler
 import json
 import ast
-
+from flask_wtf.csrf import CSRFProtect
+from markupsafe import Markup
 
 from src import getSecret, isRunningInCloud, baseUrl, ModesTypes 
 from src.APIs.fitbitData import Fitbit_API
@@ -18,9 +19,18 @@ from src.flaskServer.config import Config
 from src.flaskServer.forms import *
 from src.flaskServer.models import User, db, PlaylistsForMode, Modes, RunningModes, Playlist
 
+def json_script(obj, var_name):
+    json_str = json.dumps(obj)
+    script = f'<script>var {var_name} = {json_str};</script>'
+    return Markup(script)
+
 def create_app():
 
     app = Flask(__name__)
+    csrf = CSRFProtect(app)
+
+    # Add the filter to the Jinja2 environment
+    app.jinja_env.filters['json_script'] = json_script
 
     app.config.from_object(Config)
     
@@ -116,7 +126,6 @@ def create_app():
                     flash('Login unsuccessful. Please check email and password', 'danger')
         return render_template('forms/login.html', title='Login', form=form, guest_login_clicked=guest_login_clicked)
 
-
     @app.route("/logout", methods=["POST"])
     def logout():
         user = current_user
@@ -174,14 +183,7 @@ def create_app():
 
     @app.route('/')
     def home():
-        if current_user.spotify_authorized:
-            playlists = spotify_API.userPlaylists()
-            # import json
-            # pretty
-            # print(json.dumps(playlists[0], indent=4, sort_keys=True))
-        else:
-            playlists = []
-        return render_template('pages/home.html', playlists=playlists)
+        return render_template('pages/home.html')
     
     @app.route('/selectPlaylist', methods=['GET', 'POST'])
     @spotify_and_fitbit_authorized_required
@@ -218,24 +220,52 @@ def create_app():
             elif request.method == 'GET' and playlist['id'] in usedPlayIds:
                 playlist['selected'] = True
         return render_template('forms/selectPlaylist.html', form=form, playlists=playlists)
-
-    @app.route('/graph', methods=['GET'])
+    
+    @app.route('/dashboard', methods=['GET', 'POST'])
     @spotify_and_fitbit_authorized_required
-    def graph():
-
-        df_heartRate = fitbit_API.heartRateData()
-        df_recentlyPlayed = spotify_API.recentlyPlayedData()
-
-        audio_features = spotify_API.getAudioFeatures(df_recentlyPlayed)
-        # import plotly.graph_objects as go
-
-        # # create a plotly graph
-        # fig = go.Figure()
-        # fig.add_trace(go.Scatter(x=df_heartRate['datetime'], y=df_heartRate['bpm'], name='Heart Rate'))
-        # # fig.add_trace(go.Scatter(x=df_recentlyPlayed['played_at'], y=df_recentlyPlayed['energy'], name='Energy'))
-        # fig.update_layout(title='Heart Rate and Energy', xaxis_title='Date', yaxis_title='Value')
-
-        return audio_features.to_html()
+    def dashboard():
+        modes = ModesTypes
+        modesData = [{'id': mode.value, 'name': mode.name} for mode in modes]
+        form = SelectPlaylistsForm()    
+        form_mode_id = form.mode.data
+        # PlaylistsForMode.query.delete()
+        playlists = spotify_API.userPlaylists()
+        if request.method == 'POST':
+            if form.validate_on_submit():
+                new_plays = []
+                sql_addingPlaylists = []; sql_newPlays = []
+                new_plays = request.form.getlist('selected_playlists') # must match the name of input checkbox that is toggle as the user selects playlists
+                # print(new_plays)
+                usedPlaylists = PlaylistsForMode.query.filter_by(mode_id=form_mode_id, user_id=current_user.id).all()
+                usedPlayIds = [playlist.playlist_id for playlist in usedPlaylists]
+                new_plays = [ast.literal_eval(p.strip()) for p in new_plays] # in html a dictionary is built as a string and must be converted
+                new_play_ids = [p['playlist_id'] for p in new_plays]
+                # print("POST", form_mode_id, "new_plays", [p['playlist_name'] for p in new_plays])
+                sql_play_ids = [p.playlist_id for p in Playlist.query.filter_by(user_id=current_user.id).all()]
+                for playlist_dict in new_plays:
+                    if playlist_dict['playlist_id'] not in sql_play_ids:
+                        sql_addingPlaylists.append(Playlist(user_id=current_user.id, playlist_id=playlist_dict['playlist_id'], playlist_name=playlist_dict['playlist_name'], playlist_image_url=playlist_dict['playlist_image']))
+                    if playlist_dict['playlist_id'] not in usedPlayIds:
+                        sql_newPlays.append(PlaylistsForMode(mode_id=form_mode_id, user_id=current_user.id, playlist_id=playlist_dict['playlist_id']))
+                for playlist in usedPlaylists:
+                    if playlist.playlist_id not in new_play_ids:
+                        db.session.delete(playlist)
+                # print("Adding playlists: ", sql_addingPlaylists, "Adding new plays: ", sql_newPlays)
+                db.session.add_all(sql_addingPlaylists)
+                db.session.add_all(sql_newPlays)
+                db.session.commit()
+                for playlist in playlists:
+                    if playlist['id'] in new_play_ids:
+                        playlist['selected'].append(str(form_mode_id))
+        allSelectedPlaylists = PlaylistsForMode.query.filter_by(user_id=current_user.id).all()
+        allSelectedPlaylist_ids = {mode['id'] : [playlist.playlist_id for playlist in allSelectedPlaylists if playlist.mode_id == mode['id']] for mode in modesData}
+        for modes in modesData:
+            mode_id = modes['id']
+            for playlist in playlists:
+                if playlist['id'] in allSelectedPlaylist_ids[mode_id]:
+                    playlist['selected'].append(str(mode_id)) # TODO still add duplicates add duplicates
+        # print("allSelectedPlaylist_ids: ", allSelectedPlaylist_ids, "\n", "playlists: ", playlists)
+        return render_template('pages/dashboard.html', mode_id=form_mode_id, modes=modesData, form=form, playlists=playlists)
     
     if not app.debug:
         file_handler = FileHandler('error.log')

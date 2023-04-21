@@ -1,7 +1,8 @@
 from flask_wtf import Form, FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField, FieldList, FormField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectMultipleField, FieldList, FormField, SelectField
 from wtforms.validators import DataRequired, EqualTo, Length, ValidationError
 from .models import User
+from src import ModesTypes 
 
 class RegisterForm(FlaskForm):
     username = StringField(
@@ -57,10 +58,11 @@ class ForgotForm(FlaskForm):
     )
 
 class PlaylistForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Name')
     id = StringField('Id')
 
 class SelectPlaylistsForm(FlaskForm):
+    mode = SelectField('Mode', choices=[(str(mode.value), mode.name) for mode in ModesTypes], validators=[DataRequired()], coerce=int)
     playlists = FieldList(FormField(PlaylistForm), min_entries=1)
     submit = SubmitField('Submit')
 

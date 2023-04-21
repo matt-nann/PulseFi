@@ -151,6 +151,7 @@ class Fitbit_API:
         for oneDate in allDates:
             oneDate = oneDate.date().strftime("%Y-%m-%d")
             with FitbitClient(self) as fitbit:
+                # TODO KeyError: 'activities-heart-intraday' Error retrieving auth client:  (invalid_grant)   type:  <class 'oauthlib.oauth2.rfc6749.errors.InvalidGrantError'>
                 oneDayData = fitbit.query('intraday_time_series', resource='activities/heart', base_date=oneDate, detail_level='1sec')
             df = pd.DataFrame(oneDayData['activities-heart-intraday']['dataset'])
             date_list.append(oneDate)

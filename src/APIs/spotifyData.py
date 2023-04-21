@@ -154,7 +154,7 @@ class Spotify_API:
                 "name": playlist["name"],
                 "id": playlist["id"],
                 "image_url": playlist["images"][0]["url"] if len(playlist["images"]) > 0 else "",
-                "selected": False
+                "selected": []
             })
         return playlist_Data
     

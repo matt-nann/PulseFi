@@ -1,22 +1,27 @@
-{% extends 'layouts/form.html' %}
-{% block title %}Select Playlists{% endblock %}
 {% block content %}
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/home.css') }}">   
     <form method="post" class="form">
+        {{ form.csrf_token }}
         {{ form.hidden_tag() }}
+        <div style="display: flex;">
+            {{ form.mode(id="mode-select", class="form-select form-control", onchange="updateCheckboxes()") }}
+            <input type="submit" value="Update" class="btn btn-primary btn-lg btn-block" style="width: 25%">
+        </div>
         <div class="listbox-area">
-            <span id="ss_elem" class="listbox-label">Spotify Playlists:</span>
+            <!-- <span id="ss_elem" class="listbox-label">Spotify Playlists:</span> -->
             <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
             {% for playlist in playlists %}
                 <li id="ss_elem_{{ playlist.name }}" role="option">
-                <input type="checkbox" name="selected_playlists" value=
-                    "{{ 
-                        {'playlist_id':playlist.id, 
-                        'playlist_name':playlist.name,
-                        'playlist_image':(playlist.image_url if playlist.image_url else ''),
+                <input type="checkbox" id="{{playlist.id}}" name="{{'selected_playlists'}}"
+                    value=
+                    '{{ 
+                        {"playlist_id":playlist.id, 
+                        "playlist_name":playlist.name,
+                        "playlist_image":(playlist.image_url if playlist.image_url else ""),
                         }
-                    }}" style="label" {% if playlist.selected %}checked{% endif %}/>
-                    <!-- adds the checked attribute if a playlist has been selected before -->
+                    }}' 
+                    selected="{{ playlist.selected }}" 
+                    style="label" 
+                />
                 {% if playlist['image_url'] %}
                     <img src="{{ playlist.image_url }}" alt="{{ playlist.name }} icon" style="width:50px;height:50px;">
                 {% else %}
@@ -28,23 +33,40 @@
             {% endfor %}
             </ul>
         </div>
-        <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block">
     </form>
     {% for field, errors in form.errors.items() %}
-    <div class="alert alert-danger">
-        {% for error in errors %}
-        <span>{{ error }}</span><br>
-        {% endfor %}
-    </div>
+        <div class="alert alert-danger">
+            {% for error in errors %}
+            <span>{{ error }}</span><br>
+            {% endfor %}
+        </div>
     {% endfor %}
     <script>
         var listItems = document.querySelectorAll('#ss_elem_list li');
         listItems.forEach(function(item) {
-          var checkbox = item.querySelector('input[type="checkbox"]');
-          item.addEventListener('click', function() {
-            checkbox.checked = !checkbox.checked;
-            item.classList.toggle('checked');
-          });
+            var checkbox = item.querySelector('input[type="checkbox"]');
+            item.addEventListener('click', function() {
+                checkbox.checked = !checkbox.checked;
+                item.classList.toggle('checked');
+            });
         });
-      </script>
+        function updateCheckboxes() {
+            var selectElem = document.getElementById("mode-select");
+            var mode_id = selectElem.value;
+            // console.log("selectElem", selectElem, "mode_id", mode_id);
+            var checkboxes = document.querySelectorAll('#ss_elem_list input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {
+                var selected = checkbox.getAttribute('selected');
+                checkbox.checked = false;
+                checkbox.classList.remove('checked');
+                for (var i = 0; i < selected.length; i++) {
+                    if (selected[i] == mode_id) {
+                        checkbox.checked = true;
+                        checkbox.classList.add('checked');
+                    }
+                }
+            });
+        }
+        updateCheckboxes()
+    </script>
 {% endblock %}
