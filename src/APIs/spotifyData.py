@@ -357,7 +357,7 @@ class Spotify_API:
         @spotify_and_fitbit_authorized_required
         def recentlyPlayed():
             # return self.get_music_history_df(current_user).to_html()
-            return self.getRecentlyPlayedWithFeatures().to_html()
+            return self.getRecentlyPlayedWithFeatures().to_dict(orient='records')
         
         @app.route('/recentlyPlayedWithFeatures', methods=['GET'])
         @spotify_and_fitbit_authorized_required

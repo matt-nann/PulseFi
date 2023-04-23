@@ -43,7 +43,8 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
 
             updatemode='singledate'  # singledate or bothdates. Determines when callback is triggered
         ),
-        dcc.Graph(id='heartRateGraph')
+        dcc.Graph(id='heartRateGraph'),
+        dcc.Graph(id='audioGraph')
     ])
 
     @spotify_and_fitbit_authorized_required
@@ -77,7 +78,7 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
         return fig
 
     @dashApp.callback(
-        Output('heartRateGraph', 'figure'),
+        [Output('heartRateGraph', 'figure'), Output('audioGraph', 'figure')],
         [Input('my-date-picker-range', 'start_date'),
         Input('my-date-picker-range', 'end_date')]
     )
@@ -99,7 +100,12 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
 
         dff_heartRate = df_heartRate[(df_heartRate['datetime'] >= start_date) & (df_heartRate['datetime'] <= end_date)]
         dff_recentlyPlayed = df_recentlyPlayed[(df_recentlyPlayed['played_at'] >= start_date) & (df_recentlyPlayed['played_at'] <= end_date)]
-        fig = basicHeartRateAndTempo(dff_heartRate, dff_recentlyPlayed)
-        return fig
+        figHeartRate = basicHeartRateAndTempo(dff_heartRate, dff_recentlyPlayed)
+
+        categories = ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo']
+        df_parallel = dff_recentlyPlayed[categories]
+        fig_audio = px.parallel_coordinates(df_parallel, color='tempo')
+
+        return figHeartRate, fig_audio
 
     return app

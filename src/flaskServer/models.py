@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     spotify_authorized = db.Column(db.Boolean, default=False)
     spotify_token = db.Column(db.String(300))
     spotify_refresh_token = db.Column(db.String(200))
+    oura_api_token = db.Column(db.String(200))
 
     def __init__(self, username=None, email=None):
         self.username = username
