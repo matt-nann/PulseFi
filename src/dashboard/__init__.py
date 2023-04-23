@@ -48,7 +48,7 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
     ])
 
     @spotify_and_fitbit_authorized_required
-    def basicHeartRateAndTempo(df_heartRate, df_recentlyPlayed):
+    def basicHeartRateAndTempo(df_heartRate, df_recentlyPlayed, df_ouraHeartRate):
 
         traces = []
         for index, row in df_recentlyPlayed.iterrows():
@@ -73,7 +73,8 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
         )
 
         fig = go.Figure(data=traces, layout=layout)
-        fig.add_trace(go.Scatter(x=df_heartRate['datetime'], y=df_heartRate['bpm'], name='Heart Rate', marker=dict(color='blue')))
+        fig.add_trace(go.Scatter(x=df_heartRate['datetime'], y=df_heartRate['bpm'], name='Fitbit Heart Rate', marker=dict(color='blue')))
+        fig.add_trace(go.Scatter(x=df_ouraHeartRate['datetime'], y=df_ouraHeartRate['bpm'], name='Oura Heart Rate', marker=dict(color='red')))
 
         return fig
 
@@ -91,16 +92,20 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
         # saving the heart rate and recently played data in the user's browser's cookies is unfeasibly because it's too much data
         if session_id not in DATA_CACHE:
             DATA_CACHE[session_id] = {}
-            if 'df_heartRate' not in DATA_CACHE[session_id]:
-                DATA_CACHE[session_id]['df_heartRate'] = app.fitbit_API.heartRateData()
-            if 'df_recentlyPlayed' not in DATA_CACHE[session_id]:
-                DATA_CACHE[session_id]['df_recentlyPlayed'] = app.spotify_API.getRecentlyPlayedWithFeatures()
+        if 'df_heartRate' not in DATA_CACHE[session_id]:
+            DATA_CACHE[session_id]['df_heartRate'] = app.fitbit_API.heartRateData()
+        if 'df_recentlyPlayed' not in DATA_CACHE[session_id]:
+            DATA_CACHE[session_id]['df_recentlyPlayed'] = app.spotify_API.getRecentlyPlayedWithFeatures()
+        if 'df_ouraHeartRate' not in DATA_CACHE[session_id]:
+            DATA_CACHE[session_id]['df_ouraHeartRate'] = app.oura_API.heartRate()
         df_heartRate = DATA_CACHE[session_id]['df_heartRate']
         df_recentlyPlayed = DATA_CACHE[session_id]['df_recentlyPlayed']
+        df_ouraHeartRate = DATA_CACHE[session_id]['df_ouraHeartRate']
 
         dff_heartRate = df_heartRate[(df_heartRate['datetime'] >= start_date) & (df_heartRate['datetime'] <= end_date)]
         dff_recentlyPlayed = df_recentlyPlayed[(df_recentlyPlayed['played_at'] >= start_date) & (df_recentlyPlayed['played_at'] <= end_date)]
-        figHeartRate = basicHeartRateAndTempo(dff_heartRate, dff_recentlyPlayed)
+        dff_ouraHeartRate = df_ouraHeartRate[(df_ouraHeartRate['datetime'] >= start_date) & (df_ouraHeartRate['datetime'] <= end_date)]
+        figHeartRate = basicHeartRateAndTempo(dff_heartRate, dff_recentlyPlayed, dff_ouraHeartRate)
 
         categories = ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence', 'tempo']
         df_parallel = dff_recentlyPlayed[categories]

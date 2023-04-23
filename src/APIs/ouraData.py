@@ -1,6 +1,7 @@
 import requests 
 from datetime import datetime, timedelta
 import pandas as pd
+import numpy as np
 from oura.v2 import OuraClientV2, OuraClientDataFrameV2
 
 from src import getSecret
@@ -18,7 +19,7 @@ class Oura_API():
 
     def ouraParams(self):
         endDate = datetime.now()
-        startDate = endDate - timedelta(days=10)
+        startDate = endDate - timedelta(days=25)
         # params={ 
         #     'start_datetime': datetime.strptime('2022-01-01', '%Y-%m-%d').strftime('%Y-%m-%d %H:%M:%S'),
         #     'end_datetime': (datetime.now() - timedelta(days=-10)).strftime('%Y-%m-%d %H:%M:%S'),
@@ -85,13 +86,24 @@ class Oura_API():
         sleepData = sleepData.merge(sleepDaily, how='left', on='day')
         return sleepData
     def heartRate(self):
-        url = 'https://api.ouraring.com/v2/usercollection/heartrate'
-        response = requests.request('GET', url, headers=self.oura_headers, params=self.ouraParams())
-        # if 'detail' in response.text and response.text['detail'] == "Timerange between start and endtime has to be less than 30 days":
-        #     print("Timerange between start and endtime has to be less than 30 days")
-        #     return None
-        df = pd.read_json(response.text)
-        df = pd.concat([df.drop(['data'], axis=1), df['data'].apply(pd.Series)], axis=1)
+        try:
+            url = 'https://api.ouraring.com/v2/usercollection/heartrate'
+            response = requests.request('GET', url, headers=self.oura_headers, params=self.ouraParams())
+            # if 'detail' in response.text and response.text['detail'] == "Timerange between start and endtime has to be less than 30 days":
+            #     print("Timerange between start and endtime has to be less than 30 days")
+            #     return None
+            df = pd.read_json(response.text)
+            df = pd.concat([df.drop(['data'], axis=1), df['data'].apply(pd.Series)], axis=1)
+        except Exception as e:
+            print("Error in heartRate error: ", e)
+            df = pd.DataFrame(columns=['next_token','bpm','source','timestamp'])
+        # rename 
+        df.reset_index(inplace=True)
+        df.drop(['next_token'], inplace=True, axis=1)
+        df.rename(columns={'timestamp':'datetime'}, inplace=True)
+        df.reset_index(inplace=True)
+        df['datetime'] = pd.to_datetime(df['datetime']).dt.tz_localize(None)
+        df['datetime'] = df['datetime'] - timedelta(hours=4)
         return df
 
     def saveData(self):

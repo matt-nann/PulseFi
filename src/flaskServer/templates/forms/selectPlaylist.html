@@ -7,7 +7,6 @@
             <input type="submit" value="Update" class="btn btn-primary btn-lg btn-block" style="width: 25%">
         </div>
         <div class="listbox-area">
-            <!-- <span id="ss_elem" class="listbox-label">Spotify Playlists:</span> -->
             <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
             {% for playlist in playlists %}
                 <li id="ss_elem_{{ playlist.name }}" role="option">
