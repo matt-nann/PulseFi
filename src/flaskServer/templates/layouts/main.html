@@ -76,7 +76,8 @@
             {% if current_user.is_authenticated %}
               <li><a>{{ current_user.username }}</a></li>
               <li><a href="#" onclick="document.getElementById('logout-form').submit();return false;">Logout</a></li>
-              <form id="logout-form" method="post" class="form" action="{{ url_for('logout') }}"></form>
+              <form id="logout-form" method="post" class="form" action="{{ url_for('logout') }}">
+              </form>
             {% else %}
               <li><a href="{{ url_for('register') }}">Signup</a></li>
               <li><a href="{{ url_for('login') }}">Login</a></li>

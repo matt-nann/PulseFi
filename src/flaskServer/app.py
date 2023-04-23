@@ -28,6 +28,7 @@ def create_app():
 
     app = Flask(__name__)
     csrf = CSRFProtect(app)
+    csrf._exempt_views.add('dash.dash.dispatch') # TODO possibly a security risk, but it's a hack to get dash callbacks working within a flask app with CSRF protection
 
     # Add the filter to the Jinja2 environment
     app.jinja_env.filters['json_script'] = json_script
@@ -127,6 +128,7 @@ def create_app():
         return render_template('forms/login.html', title='Login', form=form, guest_login_clicked=guest_login_clicked)
 
     @app.route("/logout", methods=["POST"])
+    @csrf.exempt
     def logout():
         user = current_user
         user.authenticated = False

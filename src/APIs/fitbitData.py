@@ -179,7 +179,8 @@ class Fitbit_API:
             df_heartRate = pd.concat([df_heartRate_saved, df_heartRate], axis = 0)
         
         df_heartRate = df_heartRate.sort_values(by='datetime')
-
+        df_heartRate.reset_index(inplace=True, drop=True)
+        df_heartRate['datetime'] = pd.to_datetime(df_heartRate['datetime'])
         return df_heartRate
         
     def _fmt_failure(self, message):
