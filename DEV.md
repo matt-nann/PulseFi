@@ -17,3 +17,6 @@ https://dev.fitbit.com/
 must create two applications, one for locally, one for the cloud as you can only specify one redirect url for each application
 
 https://developer.spotify.com
+
+# access the heroku postgres database
+heroku pg:psql postgresql-rugged-23613 --app pulse-fi

@@ -115,6 +115,11 @@ def create_app():
             if request.form.get('guest_login'):
                 guest_login_clicked = True
                 user = User.query.filter_by(username=getSecret('GUEST_USERNAME')).first()
+                if not user:
+                    user = User(username=getSecret('GUEST_USERNAME'), email=getSecret('GUEST_EMAIL'))
+                    user.set_password(getSecret('GUEST_PASSWORD'))
+                    db.session.add(user)
+                    db.session.commit()
                 login_user(user, remember=True)
                 return redirect(url_for('home'))
             else:
