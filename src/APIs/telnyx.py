@@ -6,6 +6,7 @@ from src import getSecret
 class Telnyx_API:
     def __init__(self, db):
         telnyx.api_key = getSecret('TELNYX_API_KEY')
+        self.db = db
     
     def forwardMessage(self, message):
         your_telnyx_number = getSecret('TELNYX_NUMBER')
