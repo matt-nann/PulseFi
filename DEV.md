@@ -23,3 +23,7 @@ heroku pg:psql postgresql-rugged-23613 --app pulse-fi
 
 # Procfile
 specifies the commands allowing heroku to build and execute the app
+
+# telnyx
+
+https://portal.telnyx.com/#/app/programmable-messaging/profiles/edit/

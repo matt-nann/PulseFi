@@ -2,6 +2,7 @@ import telnyx
 from flask import request
 
 from src import getSecret
+from pprint import pprint
 
 class Telnyx_API:
     def __init__(self, db):
@@ -22,22 +23,38 @@ class Telnyx_API:
         
         @app.route('/forwardSMS', methods=['POST'])
         def sms_webhook():
-            sms_from = request.form['from']
-            sms_to = request.form['to']
-            sms_text = request.form['text']
+            # Print request headers
+            print("Request Headers:")
+            pprint(dict(request.headers))
 
-            print(f"Received SMS from {sms_from} to {sms_to} with text: {sms_text}")
+            # Print request data (form data)
+            print("Request Form Data:")
+            pprint(request.form)
 
-            # # Extract the Google 2FA code from the SMS text
-            # # assuming the message contains only the code
-            # google_2fa_code = sms_text.strip()
-            print(sms_text)
+            # Print request JSON data (if available)
+            print("Request JSON Data:")
+            pprint(request.get_json())
+
+            # Print request URL parameters
+            print("Request URL Parameters:")
+            pprint(request.args)
+
+            # sms_from = request.form['from']
+            # sms_to = request.form['to']
+            # sms_text = request.form['text']
+
+            # print(f"Received SMS from {sms_from} to {sms_to} with text: {sms_text}")
+
+            # # # Extract the Google 2FA code from the SMS text
+            # # # assuming the message contains only the code
+            # # google_2fa_code = sms_text.strip()
+            # print(sms_text)
 
             # Use the extracted 2FA code to complete the login process
             # by interacting with the browser instance
             # (e.g., input the code in the appropriate field and submit the form)
 
-            self.forwardMessage(sms_text)
+            # self.forwardMessage(sms_text)
 
             return '', 200
 
