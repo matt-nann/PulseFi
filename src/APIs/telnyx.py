@@ -22,6 +22,7 @@ class Telnyx_API:
     def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
         
         @app.route('/forwardSMS', methods=['POST'])
+        @csrf.exempt
         def sms_webhook():
             # Print request headers
             print("Request Headers:")
