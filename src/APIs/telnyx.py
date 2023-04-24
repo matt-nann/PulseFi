@@ -35,7 +35,7 @@ class Telnyx_API:
 
             # Print request JSON data (if available)
             print("Request JSON Data:")
-            pprint(request.get_json())
+            # pprint(request.get_json())
 
             # Print request URL parameters
             print("Request URL Parameters:")
