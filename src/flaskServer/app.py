@@ -187,7 +187,7 @@ def create_app():
     setattr(app, 'oura_API', oura_API)
     oura_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= telnyx API data handler ===========
-    telynx_API = Telnyx_API(db)
+    telynx_API = Telnyx_API(db, csrf)
     setattr(app, 'telynx_API', telynx_API)
     telynx_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= dash graphs ===========

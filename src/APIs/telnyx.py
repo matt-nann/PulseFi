@@ -1,13 +1,14 @@
 import telnyx
 from flask import request
-
-from src import getSecret
 from pprint import pprint
 
+from src import getSecret
+
 class Telnyx_API:
-    def __init__(self, db):
+    def __init__(self, db, csrf):
         telnyx.api_key = getSecret('TELNYX_API_KEY')
         self.db = db
+        self.csrf = csrf
     
     def forwardMessage(self, message):
         your_telnyx_number = getSecret('TELNYX_NUMBER')
@@ -22,7 +23,7 @@ class Telnyx_API:
     def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
         
         @app.route('/forwardSMS', methods=['POST'])
-        @csrf.exempt
+        @self.csrf.exempt
         def sms_webhook():
             # Print request headers
             print("Request Headers:")
