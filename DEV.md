@@ -20,3 +20,6 @@ https://developer.spotify.com
 
 # access the heroku postgres database
 heroku pg:psql postgresql-rugged-23613 --app pulse-fi
+
+# Procfile
+specifies the commands allowing heroku to build and execute the app
