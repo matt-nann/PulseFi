@@ -1,5 +1,5 @@
 import telnyx
-from flask import request
+from flask import request, make_response, jsonify
 from pprint import pprint
 
 from src import getSecret
@@ -40,24 +40,24 @@ class Telnyx_API:
             # Print request URL parameters
             print("Request URL Parameters:")
             pprint(request.args)
-
-            # sms_from = request.form['from']
-            # sms_to = request.form['to']
-            # sms_text = request.form['text']
-
-            # print(f"Received SMS from {sms_from} to {sms_to} with text: {sms_text}")
+            try:
+                sms_from = request.form['from']
+                sms_to = request.form['to']
+                sms_text = request.form['text']
+            except:
+                return make_response(jsonify({'error': 'did not specify sending and receiving numbers'}), 200)
+            print(f"Received SMS from {sms_from} to {sms_to} with text: {sms_text}")
 
             # # # Extract the Google 2FA code from the SMS text
             # # # assuming the message contains only the code
-            # # google_2fa_code = sms_text.strip()
-            # print(sms_text)
+            # google_2fa_code = sms_text.strip()
+            print(sms_text)
 
             # Use the extracted 2FA code to complete the login process
             # by interacting with the browser instance
             # (e.g., input the code in the appropriate field and submit the form)
-
-            # self.forwardMessage(sms_text)
-
-            return '', 200
+            self.forwardMessage(sms_text)
+            # jsonify({'error': 'No songs found in playlists for this mode'})
+            return make_response("", 200)
 
         return app
