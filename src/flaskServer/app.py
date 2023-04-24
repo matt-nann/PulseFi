@@ -14,6 +14,7 @@ from src import getSecret, isRunningInCloud, baseUrl, ModesTypes
 from src.APIs.fitbitData import Fitbit_API
 from src.APIs.spotifyData import Spotify_API
 from src.APIs.ouraData import Oura_API
+from src.APIs.telnyx import Telnyx_API
 from src.dashboard import add_dash_routes
 from src.flaskServer.config import Config
 from src.flaskServer.forms import *
@@ -184,7 +185,11 @@ def create_app():
     # ============= oura API data handler ===========
     oura_API = Oura_API()
     setattr(app, 'oura_API', oura_API)
-    oura_API.add_routes(app, db)
+    oura_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
+    # ============= telnyx API data handler ===========
+    telynx_API = Telnyx_API()
+    setattr(app, 'telynx_API', telynx_API)
+    telynx_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
     # ============= dash graphs ===========
     dashApp = add_dash_routes(app, db, spotify_and_fitbit_authorized_required)
 

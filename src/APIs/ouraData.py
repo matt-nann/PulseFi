@@ -109,7 +109,7 @@ class Oura_API():
     def saveData(self):
         df_download = pd.read_csv('oura_2022-01-17_2022-12-21_trends.csv')
 
-    def add_routes(self, app, db):
+    def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
 
         @app.route('/oura_heartRate', methods=['GET'])
         def oura_heartRate():
