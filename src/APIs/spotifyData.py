@@ -122,9 +122,12 @@ class Spotify_API:
         response = requests.get(endpoint, headers=self.buildAuthHeader(), params=params)
         data = json.loads(response.text)
         if 'error' in data and data['error']['status'] == 401:
-            if 'message' in data['error'] and data['error']['message'] == "The access token expired":   
+            expiredAccessToken = 'message' in data['error'] and data['error']['message'] == "The access token expired"
+            invalidAccessToken = 'message' in data['error'] and data['error']['message'] == "Invalid access token"
+            if expiredAccessToken or invalidAccessToken:
                 self.refreshAccessToken()
                 return self.getRequest(endpoint, params=params)
+            print("getRequest: ", data)
         else:
             return data
         

@@ -44,6 +44,7 @@ def add_dash_routes(app, db, spotify_and_fitbit_authorized_required):
             updatemode='singledate'  # singledate or bothdates. Determines when callback is triggered
         ),
         dcc.Graph(id='heartRateGraph'),
+        html.H3('Audio Features of Recently Played Music'),
         dcc.Graph(id='audioGraph')
     ])
 

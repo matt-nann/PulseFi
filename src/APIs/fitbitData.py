@@ -33,14 +33,19 @@ class FitbitClient(object):
     def updateClient(self):
         self.fitbit = Fitbit(self.client_id, self.client_secret, oauth2=True, access_token=current_user.fitbit_access_token, refresh_token=current_user.fitbit_refresh_token)
     def refreshToken(self):
+        """
+        a new refresh token is returned with the new access token. save both
+        """
         try:
-            # print("Refreshing token, old access token: ", self.fitbit.client.session.token['access_token'])
             try:
                 self.fitbit.client.refresh_token()
                 current_user.fitbit_access_token = self.fitbit.client.session.token['access_token']
+                # At this point, your application needs to refresh the access token. The Fitbit API follows RFC6749 specification for refreshing access tokens. 
+                # A refresh token does not expire until it is used. The refresh token can only be used once, as a new refresh token is returned with the new access token.
+                current_user.fitbit_refresh_token = self.fitbit.client.session.token['refresh_token']
                 self.db.session.commit()
             except InvalidGrantError:
-                print("Invalid grant error need to reauthorize")
+                print("Invalid grant error need to reauthorize, screwing up the refresh token process")
                 current_user.fitbit_authorized = False
                 current_user.fitbit_access_token = None
                 current_user.fitbit_refresh_token = None
