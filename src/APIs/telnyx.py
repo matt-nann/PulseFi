@@ -146,7 +146,13 @@ class Telnyx_API:
             # except:
             #     return "No JSON data found", 400
             
-            payload = request.data.payload
+            data = request.get_json().get("data", None) 
+            if not data:
+                return "No data found", 400
+            payload = data.get("payload", None)
+            if not payload:
+                return "No payload found", 400
+
             signature = request.headers.get("Telnyx-Signature-ed25519", None)
             timestamp = request.headers.get("Telnyx-Timestamp", None)
 
@@ -164,9 +170,9 @@ class Telnyx_API:
             
             print("Received event: id={id}, type={type}".format(id=event.id, type=event.type))            
             
-            sms_from = getattr(request.data.payload, 'from').phone_number
-            sms_to = getattr(request.data.payload, 'to')[0].phone_number
-            sms_text = request.data.payload.text
+            sms_from = getattr(getattr(payload, 'from'),'phone_number')
+            sms_to = getattr(getattr(payload, 'to')[0],'phone_number')
+            sms_text = getattr(payload, 'text')
             print("SMS from: " + sms_from, "SMS to: " + sms_to, "SMS text: " + sms_text)
             
             self.forwardMessage(sms_text)
