@@ -33,6 +33,31 @@ class Telnyx_API:
             to=destination_number,
             text=message,
         )
+    def verify_signature(self, request):
+        try:
+            body = request.data.decode('utf-8')
+        except:
+            return "Bad payload", 400
+
+        signature = request.headers.get("Telnyx-Signature-ed25519", None)
+        timestamp = request.headers.get("Telnyx-Timestamp", None)
+
+        print("Payload:", json.dumps(body))
+        print("Signature:", signature)
+        print("Timestamp:", timestamp)
+
+        if not signature or not timestamp:
+            return "No signature or timestamp", 400
+
+        try:
+            event = telnyx.Webhook.construct_event(body, signature, timestamp, self.TOLERANCE_SECONDS)
+        except ValueError:
+            print("Error while decoding event!")
+            return "Bad payload", 400
+        except telnyx.error.SignatureVerificationError as err:
+            pprint("SignatureVerificationError: " + str(err))
+            return "Bad signature", 400  
+        return event, 200 
 
     def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
         
@@ -109,42 +134,20 @@ class Telnyx_API:
             try:
                 pprint(request.args)
             except:
-                print("No URL parameters found")
+                print("No URL parameters found")   
 
-            try:
-                body = request.data.decode('utf-8')
-            except:
-                return "Bad payload", 400
-
-            signature = request.headers.get("Telnyx-Signature-ed25519", None)
-            timestamp = request.headers.get("Telnyx-Timestamp", None)
-
-            print("Payload:", json.dumps(body))
-            print("Signature:", signature)
-            print("Timestamp:", timestamp)
-
-            if not signature or not timestamp:
-                return "No signature or timestamp", 400
-
-            try:
-                event = telnyx.Webhook.construct_event(body, signature, timestamp, self.TOLERANCE_SECONDS)
-            except ValueError:
-                print("Error while decoding event!")
-                return "Bad payload", 400
-            except telnyx.error.SignatureVerificationError as err:
-                pprint("SignatureVerificationError: " + str(err))
-                return "Bad signature", 400
-            
-            print("Received event: id={id}, type={type}".format(id=event.id, type=event.type))            
+            event, status = self.verify_signature(request)
+            if status != 200:
+                print("Signature verification failed error message: ", event)
+                return event, status
 
             body = json.loads(request.data)
             message_id = body["data"]["payload"]["id"]
-            print(f"Received inbound message with ID: {message_id}")
             to_number = body["data"]["payload"]["to"][0]["phone_number"]
             from_number = body["data"]["payload"]["from"]["phone_number"]
             sms_text = body["data"]["payload"]["text"]
 
-            print("SMS from: " + from_number, "to: " + to_number, "message: " + sms_text)
+            print("message_id : ", message_id, "SMS from: " + from_number, "to: " + to_number, "message: " + sms_text)
             self.forwardMessage(sms_text)
 
             return make_response("OK", 200)
