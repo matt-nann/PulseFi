@@ -45,9 +45,11 @@ def to_binary(value, encoding='utf-8'):
 class Telnyx_API:
     def __init__(self, db, csrf):
         telnyx.api_key = getSecret('TELNYX_API_KEY')
+        telnyx.public_key = getSecret('TELNYX_PUBLIC_KEY')
         self.db = db
         self.csrf = csrf
         self.public_key = getSecret('TELNYX_PUBLIC_KEY')
+
     
     def forwardMessage(self, message):
         your_telnyx_number = getSecret('TELNYX_NUMBER')
@@ -157,6 +159,10 @@ class Telnyx_API:
             signature = request.headers.get("Telnyx-Signature-ed25519", None)
             timestamp = request.headers.get("Telnyx-Timestamp", None)
 
+            print("Payload:", json.dumps(payload))
+            print("Signature:", signature)
+            print("Timestamp:", timestamp)
+
             if not signature or not timestamp:
                 return "No signature or timestamp", 400
 
@@ -165,8 +171,10 @@ class Telnyx_API:
             except ValueError:
                 print("Error while decoding event!")
                 return "Bad payload", 400
-            except telnyx.error.SignatureVerificationError:
-                print("Invalid signature!")
+            except telnyx.error.SignatureVerificationError as err:
+                pprint("SignatureVerificationError: " + str(err))
+                # if err.code == "sig_ver_invalid_signature":
+                #     return "Bad signature", 400
                 return "Bad signature", 400
             
             print("Received event: id={id}, type={type}".format(id=event.id, type=event.type))            
