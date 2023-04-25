@@ -1,16 +1,7 @@
 import telnyx
 from flask import request, make_response, jsonify
 from pprint import pprint
-import base64
-import hashlib
-import hmac
-import time
 import json
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
-from cryptography.hazmat.primitives.serialization import load_pem_public_key
-from cryptography.exceptions import InvalidSignature
-import base64
-import textwrap
 
 from src import getSecret
 
@@ -140,11 +131,15 @@ class Telnyx_API:
             if status != 200:
                 print("Signature verification failed error message: ", event)
                 return event, status
+            
+            # ignore outgoing messages
+            from_number = body["data"]["payload"]["from"]["phone_number"]
+            if from_number == getSecret('TELNYX_NUMBER'):
+                return make_response("OK", 200)
 
             body = json.loads(request.data)
             message_id = body["data"]["payload"]["id"]
             to_number = body["data"]["payload"]["to"][0]["phone_number"]
-            from_number = body["data"]["payload"]["from"]["phone_number"]
             sms_text = body["data"]["payload"]["text"]
 
             print("message_id : ", message_id, "SMS from: " + from_number, "to: " + to_number, "message: " + sms_text)
