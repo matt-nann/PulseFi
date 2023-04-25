@@ -132,12 +132,13 @@ class Telnyx_API:
                 print("Signature verification failed error message: ", event)
                 return event, status
             
+            body = json.loads(request.data)
+            
             # ignore outgoing messages
             from_number = body["data"]["payload"]["from"]["phone_number"]
             if from_number == getSecret('TELNYX_NUMBER'):
                 return make_response("OK", 200)
 
-            body = json.loads(request.data)
             message_id = body["data"]["payload"]["id"]
             to_number = body["data"]["payload"]["to"][0]["phone_number"]
             sms_text = body["data"]["payload"]["text"]
