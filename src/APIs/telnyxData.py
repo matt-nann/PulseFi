@@ -15,6 +15,7 @@ import textwrap
 from src import getSecret
 
 class Telnyx_API:
+    TOLERANCE_SECONDS = 5 * 60 # 5 minutes
     def __init__(self, db, csrf):
         telnyx.api_key = getSecret('TELNYX_API_KEY')
         telnyx.public_key = getSecret('TELNYX_PUBLIC_KEY')
@@ -126,7 +127,7 @@ class Telnyx_API:
                 return "No signature or timestamp", 400
 
             try:
-                event = telnyx.Webhook.construct_event(body, signature, timestamp, self.public_key)
+                event = telnyx.Webhook.construct_event(body, signature, timestamp, self.TOLERANCE_SECONDS)
             except ValueError:
                 print("Error while decoding event!")
                 return "Bad payload", 400
