@@ -30,21 +30,45 @@
                 body: JSON.stringify({ mode_id: modeId })
             })
             .then(response => {
+                console.log("startMode response", response)
                 if (response.ok) {
                     console.log("startMode success", response)
-                    // print("startMode success")
-                    // handle success response
                 } else {
-                    console.log("startMode error", response)
-                    // print("startMode error", response)
-                    // handle error response
+                    if (response.status === 405) {
+                        showError("No active device found using spotify. Please open spotify on a device and try again.");
+                    } else {
+                        console.log("startMode error not 405 no active device", response)
+                    }
                 }
             })
             .catch(error => {
                 console.log("startMode error", error)
-                // print("startMode error", error)
-                // handle network error
             });
+        }
+        function showError(message) {
+            const errorId = "error-message";
+            let errorDiv = document.getElementById(errorId);
+
+            if (errorDiv) {
+                const messageSpan = errorDiv.querySelector('.message-text');
+                messageSpan.textContent = message;
+            } else {
+                errorDiv = document.createElement("div");
+                errorDiv.id = errorId;
+                errorDiv.classList.add("alert", "alert-warning", "fade", "in");
+
+                const closeBtn = document.createElement("a");
+                closeBtn.classList.add("close");
+                closeBtn.setAttribute("data-dismiss", "alert");
+                closeBtn.innerHTML = "&times;";
+                errorDiv.appendChild(closeBtn);
+
+                const textNode = document.createTextNode(message);
+                errorDiv.appendChild(textNode);
+
+                const footer = document.getElementById("footer");
+                footer.parentNode.insertBefore(errorDiv, footer);
+            }
         }
     </script>
 {% endblock %}

@@ -193,7 +193,7 @@ class Fitbit_API:
         tb_html = '<pre>%s</pre>' % ('\n'.join(tb)) if tb else ''
         return self.failure_html % (message, tb_html)
     
-    def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
+    def add_routes(self, app, db, spotify_and_fitbit_authorized_required, login_required):
 
         @app.route('/authorize_fitbit', methods=['GET','POST'])
         def authorize_fitbit():
@@ -227,6 +227,7 @@ class Fitbit_API:
                 return redirect(url_for('home'))
             
         @app.route('/user_authorize_fitbit', methods=['GET'])
+        @login_required()
         def user_authorize_fitbit():
             page = self.authorize()
             if page:

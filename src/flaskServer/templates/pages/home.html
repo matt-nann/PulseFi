@@ -10,13 +10,7 @@
     <li><a href="#" onclick="document.getElementById('user_authorize_fitbit').submit();return false;">Authorize Fitbit</a></li>
     <form id="user_authorize_fitbit" method="get" class="form" action="{{ url_for('user_authorize_fitbit') }}"></form>
     {% endif %}
-    <!-- {% if current_user.spotify_authorized and current_user.fitbit_authorized %}
-      <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-    {% endif %} -->
   {% else %}
-    <div class="page-header">
-      <h1>Sticky footer with fixed navbar</h1>
-    </div>
-    <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+  <h3>Register or Login to access dashboard</h3>
   {% endif %}
 {% endblock %}

@@ -102,7 +102,6 @@ def create_app():
         return str(getSecret('FITBIT_CLIENT_ID')) + ' isRunningInCloud: ' + str(isRunningInCloud())
 
     @app.route('/about')
-    @login_required()
     def about():
         return render_template('pages/about.html')
    
@@ -177,11 +176,11 @@ def create_app():
     # ============= adding in fitbit API data handler  =============
     fitbit_API = Fitbit_API(db)
     setattr(app, 'fitbit_API', fitbit_API)
-    fitbit_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
+    fitbit_API.add_routes(app, db, spotify_and_fitbit_authorized_required, login_required)
     # ============= spotify API data handler ===========
     spotify_API = Spotify_API(db)
     setattr(app, 'spotify_API', spotify_API)
-    spotify_API.add_routes(app, db, spotify_and_fitbit_authorized_required)
+    spotify_API.add_routes(app, db, spotify_and_fitbit_authorized_required, login_required)
     # ============= oura API data handler ===========
     oura_API = Oura_API()
     setattr(app, 'oura_API', oura_API)

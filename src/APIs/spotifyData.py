@@ -234,12 +234,23 @@ class Spotify_API:
                 
         current_song = CurrentSong(song, song_id, artist, artist_id, timestamp, progress_ms, album, duration_ms, is_playing)
         return current_song
+    
+    def getActiveDeviceId(self):
+        devices = self.getRequest("{}/me/player/devices".format(self.SPOTIFY_API_URL)) 
+        for device in devices['devices']:
+            if device['is_active']:
+                return device['id']
+        return None
 
-    def playSong(self, song_id):
-        response = self.postRequest("{}/me/player/play".format(self.SPOTIFY_API_URL), data={'uris': ['spotify:track:' + song_id]})
+    def playSong(self, song_id, device_id=None):
+        if device_id is None:
+            device_id = self.getActiveDeviceId()
+            if device_id is None:
+                return make_response(jsonify({'error': 'No active device found'}), 405)
+        response = self.postRequest("{}/me/player/play".format(self.SPOTIFY_API_URL), data={'uris': ['spotify:track:' + song_id], 'device_id': device_id})
         if 'error' in response and response['error']['status'] == 404:
             if 'message' in response['error'] and response['error']['message'] == 'Player command failed: No active device found':  
-                return 'No active device found'
+                return make_response(jsonify({'error': 'No active device found'}), 405)
         return 'Song played successfully'
         
     def playRandomSong(self):
@@ -301,7 +312,7 @@ class Spotify_API:
         song_ids = [item['track']['id'] for item in playlist_data['items']]
         return song_ids
 
-    def add_routes(self, app, db, spotify_and_fitbit_authorized_required):
+    def add_routes(self, app, db, spotify_and_fitbit_authorized_required, login_required):
 
         @app.route("/authorize_spotify")
         def authorize_spotify():
@@ -327,6 +338,7 @@ class Spotify_API:
             return  redirect(url_for('home'))
         
         @app.route('/user_authorize_spotify', methods=['GET'])
+        @login_required()
         def user_authorize_spotify():
             page = self.authorize()
             if page:
@@ -381,5 +393,10 @@ class Spotify_API:
         @spotify_and_fitbit_authorized_required
         def userPlaylists():
             return self.userPlaylists()
+        
+        @app.route('/getActiveDeviceId', methods=['GET'])
+        @spotify_and_fitbit_authorized_required
+        def getActiveDeviceId():
+            return self.getActiveDeviceId()
 
         return app
