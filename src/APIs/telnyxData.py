@@ -14,34 +14,6 @@ import textwrap
 
 from src import getSecret
 
-def to_text(value, encoding='utf-8'):
-    """Convert value to unicode, default encoding is utf-8
-
-    :param value: Value to be converted
-    :param encoding: Desired encoding
-    """
-    if not value:
-        return ''
-    if isinstance(value, str):
-        return value
-    if isinstance(value, bytes):
-        return value.decode(encoding)
-    return str(value)
-
-def to_binary(value, encoding='utf-8'):
-    """Convert value to binary string, default encoding is utf-8
-
-    :param value: Value to be converted
-    :param encoding: Desired encoding
-    """
-    if not value:
-        return b''
-    if isinstance(value, bytes):
-        return value
-    if isinstance(value, str):
-        return value.encode(encoding)
-    return to_text(value).encode(encoding)
-
 class Telnyx_API:
     def __init__(self, db, csrf):
         telnyx.api_key = getSecret('TELNYX_API_KEY')
@@ -117,49 +89,36 @@ class Telnyx_API:
                 }
             }
             """
-            # Print request headers
             print("Request Headers:")
             try:
                 pprint(request.headers)
             except:
                 print("No headers found")
-
-            # Print request data (form data)
             print("Request Form Data:")
             try:
                 pprint(request.form)
             except:
                 print("No form data found")
-
-            # Print request JSON data (if available)
             print("Request JSON Data:")
             try:
                 pprint(request.get_json())
             except:
                 print("No JSON data found")
-
-            # Print request URL parameters
             print("Request URL Parameters:")
             try:
                 pprint(request.args)
             except:
                 print("No URL parameters found")
-            # try:
-            #     data = request.get_json()
-            # except:
-            #     return "No JSON data found", 400
-            
-            data = request.get_json().get("data", None) 
-            if not data:
-                return "No data found", 400
-            payload = data.get("payload", None)
-            if not payload:
-                return "No payload found", 400
+
+            try:
+                body = request.data.decode('utf-8')
+            except:
+                return "Bad payload", 400
 
             signature = request.headers.get("Telnyx-Signature-ed25519", None)
             timestamp = request.headers.get("Telnyx-Timestamp", None)
 
-            print("Payload:", json.dumps(payload))
+            print("Payload:", json.dumps(body))
             print("Signature:", signature)
             print("Timestamp:", timestamp)
 
@@ -167,26 +126,26 @@ class Telnyx_API:
                 return "No signature or timestamp", 400
 
             try:
-                event = telnyx.Webhook.construct_event(json.dumps(payload), signature, timestamp, self.public_key)
+                event = telnyx.Webhook.construct_event(body, signature, timestamp, self.public_key)
             except ValueError:
                 print("Error while decoding event!")
                 return "Bad payload", 400
             except telnyx.error.SignatureVerificationError as err:
                 pprint("SignatureVerificationError: " + str(err))
-                # if err.code == "sig_ver_invalid_signature":
-                #     return "Bad signature", 400
                 return "Bad signature", 400
             
             print("Received event: id={id}, type={type}".format(id=event.id, type=event.type))            
-            
-            sms_from = getattr(getattr(payload, 'from'),'phone_number')
-            sms_to = getattr(getattr(payload, 'to')[0],'phone_number')
-            sms_text = getattr(payload, 'text')
-            print("SMS from: " + sms_from, "SMS to: " + sms_to, "SMS text: " + sms_text)
-            
+
+            body = json.loads(request.data)
+            message_id = body["data"]["payload"]["id"]
+            print(f"Received inbound message with ID: {message_id}")
+            to_number = body["data"]["payload"]["to"][0]["phone_number"]
+            from_number = body["data"]["payload"]["from"]["phone_number"]
+            sms_text = body["data"]["payload"]["text"]
+
+            print("SMS from: " + from_number, "to: " + to_number, "message: " + sms_text)
             self.forwardMessage(sms_text)
 
-            # Return a 200 OK response to acknowledge receipt of the webhook
             return make_response("OK", 200)
             """
             Hierarchy of URLs - Telnyx first tries the primary URL on your Messaging Profile. If that URL does not resolve, or your application returns a response other than an "200 OK", the webhook will be delivered to the failover URL, if one has been specified.

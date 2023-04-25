@@ -14,7 +14,7 @@ from src import getSecret, isRunningInCloud, baseUrl, ModesTypes
 from src.APIs.fitbitData import Fitbit_API
 from src.APIs.spotifyData import Spotify_API
 from src.APIs.ouraData import Oura_API
-from src.APIs.telnyx import Telnyx_API
+from APIs.telnyxData import Telnyx_API
 from src.dashboard import add_dash_routes
 from src.flaskServer.config import Config
 from src.flaskServer.forms import *
