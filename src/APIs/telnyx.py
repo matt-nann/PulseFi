@@ -5,6 +5,7 @@ import base64
 import hashlib
 import hmac
 import time
+import json
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
 from cryptography.hazmat.primitives.serialization import load_pem_public_key
 from cryptography.exceptions import InvalidSignature
@@ -160,7 +161,7 @@ class Telnyx_API:
                 return "No signature or timestamp", 400
 
             try:
-                event = telnyx.Webhook.construct_event(payload, signature, timestamp, self.public_key)
+                event = telnyx.Webhook.construct_event(json.dumps(payload), signature, timestamp, self.public_key)
             except ValueError:
                 print("Error while decoding event!")
                 return "Bad payload", 400
