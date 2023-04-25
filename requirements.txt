@@ -137,3 +137,5 @@ PyNaCl==1.5.0
 cffi==1.15.1
 pycparser==2.21
 telnyx==2.0.0
+# verifying telnyx webhook
+cryptography==40.0.2
