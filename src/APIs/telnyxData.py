@@ -2,6 +2,7 @@ import telnyx
 from flask import request, make_response, jsonify
 from pprint import pprint
 import json
+import re
 
 from src import getSecret
 
@@ -56,6 +57,9 @@ class Telnyx_API:
         @self.csrf.exempt
         def sms_webhook():
             """
+            This webhook is called for both incoming and outgoing messages, so we need to check the direction of the message to make sure we only process incoming messages. 
+            otherwise we will end up in an infinite loop of forwarding messages.
+
             {
                 "data": {
                     "event_type": "message.received",
@@ -105,27 +109,7 @@ class Telnyx_API:
                     "delivered_to": "https://pulse-fi.herokuapp.com/forwardSMS"
                 }
             }
-            """
-            print("Request Headers:")
-            try:
-                pprint(request.headers)
-            except:
-                print("No headers found")
-            print("Request Form Data:")
-            try:
-                pprint(request.form)
-            except:
-                print("No form data found")
-            print("Request JSON Data:")
-            try:
-                pprint(request.get_json())
-            except:
-                print("No JSON data found")
-            print("Request URL Parameters:")
-            try:
-                pprint(request.args)
-            except:
-                print("No URL parameters found")   
+            """  
 
             event, status = self.verify_signature(request)
             if status != 200:
@@ -138,11 +122,25 @@ class Telnyx_API:
             from_number = body["data"]["payload"]["from"]["phone_number"]
             if from_number == getSecret('TELNYX_NUMBER'):
                 return make_response("OK", 200)
-
+            
             message_id = body["data"]["payload"]["id"]
             to_number = body["data"]["payload"]["to"][0]["phone_number"]
             sms_text = body["data"]["payload"]["text"]
 
+            if to_number == getSecret('TELNYX_NUMBER'):
+                # text = "G-869457 is your Google verification code."
+                if 'G-' in sms_text and 'is your Google verification code.' in sms_text:
+                    try:
+                        pattern = r'G-\d+'
+                        verification_code = re.search(pattern, sms_text)
+                        if verification_code:
+                            code = int(verification_code.group()[2:])
+                            print("Verification code: ", code)
+                    except:
+                        print("Error parsing verification code.")
+                else:
+                    print("Message not from Google")            
+            
             print("message_id : ", message_id, "SMS from: " + from_number, "to: " + to_number, "message: " + sms_text)
             self.forwardMessage(sms_text)
 
