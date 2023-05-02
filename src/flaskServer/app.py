@@ -96,11 +96,6 @@ def create_app():
         
         return decorated_view
 
-    # TODO remove me
-    @app.route('/checkSecrets',)
-    def checkSecrets():
-        return str(getSecret('FITBIT_CLIENT_ID')) + ' isRunningInCloud: ' + str(isRunningInCloud())
-
     @app.route('/about')
     def about():
         return render_template('pages/about.html')
