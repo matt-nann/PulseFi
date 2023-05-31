@@ -43,18 +43,3 @@ the user can use either fitbit or oura ring depending on what consumer health tr
 5. interact with the parallel coordinate graph by dragging along the a vertical axis to select a range of songs to view, double click to remove the selection
 
 <img src="dashboard.png" alt="dashboard" width="500"/>
-
-## user stories
-
-1. As a user, I want to be able to access my data from oura ring so that I can see all of my available health data in one central space.
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/1-_QwTmd10em2dU1ju-kPmQAI2n6?Type=TaskLink&Channel=Link&CreatedTime=638179461996610000
-2. As a user, I would like to see the characteristics of the music I listen
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/e_frgHpHuU2Ow7jbnOv9F2QAE6vs?Type=TaskLink&Channel=Link&CreatedTime=638179463461230000
-3. As a user, I would like to specified the music that is allowed to be recommended
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/0Q8X4D777UGFjMXznlQc1WQAIbou?Type=TaskLink&Channel=Link&CreatedTime=638179464471050000
-4. As a user, I want to see my music playlists so that I can always have the option to choose my playlist manually.
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/DSh2OicW_0WS7JnFG1dsIGQAPxQi?Type=TaskLink&Channel=Link&CreatedTime=638179464537400000
-5. As a user, I would like to login into a website to access my data
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/8Gwq6zMpWkutLNR53hkdAmQADTxa?Type=TaskLink&Channel=Link&CreatedTime=638179464684620000
-6. As a user, I want to be able to access my data from fitbit so that I can see all of my available health data in one central space.
-    - https://tasks.office.com/Clemson.onmicrosoft.com/Home/Task/y80R81D4QUar_ADXKlurMWQACn6d?Type=TaskLink&Channel=Link&CreatedTime=638179464957360000
